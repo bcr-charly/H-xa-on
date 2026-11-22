@@ -62,7 +62,7 @@ func (p *PageAccueil) sectionHero(locale string, connecte bool) string {
 	return fmt.Sprintf(`
 <section class="accueil-section accueil-hero">
 	<div class="accueil-contenu">
-		<img class="logo-grand fondu" src="/assets/logo.svg" alt="%s">
+		<img class="logo-grand fondu" src="/assets/logo.jpg" alt="%s">
 		<p class="accueil-slogan fondu">%s</p>
 		<div class="fondu">%s</div>
 	</div>
@@ -108,7 +108,7 @@ func (p *PageAccueil) sectionPresentation(locale string) string {
 		</div>
 		<div class="presentation-photos fondu">
 			<figure class="presentation-figure">
-				<span class="bulle"><img src="/assets/logo.svg" alt=""></span>
+				<span class="bulle"><img src="/assets/logo.jpg" alt=""></span>
 			</figure>
 			<figure class="presentation-figure">
 				<span class="bulle"><img src="%s" alt="%s"></span>
@@ -167,7 +167,6 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 	return fmt.Sprintf(`
 <section class="accueil-section compet" id="competitions">
 	<div class="compet-barre fondu">%s</div>
-	<p class="compet-note fondu">%s</p>
 	<div class="compet-grille">
 		%s
 		<div class="compet-bulle compet-pos-haut-gauche compet-inscrire fondu"><a class="compet-cellule" href="/inscriptions">`+
@@ -175,7 +174,6 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 	</div>
 </section>`,
 		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.compet.barre")),
-		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.compet.note")),
 		cellules.String(),
 		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.compet.inscrire")),
 	)

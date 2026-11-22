@@ -31,8 +31,8 @@ type PageSport struct {
 	DossierContenu string
 }
 
-func (p *PageSport) Nom() string        { return "sport" }
-func (p *PageSport) Chemins() []string  { return []string{"/sport/"} }
+func (p *PageSport) Nom() string       { return "sport" }
+func (p *PageSport) Chemins() []string { return []string{"/sport/"} }
 
 func (p *PageSport) Servir(w http.ResponseWriter, r *http.Request) {
 	locale := kernel.LocaleDepuisRequete(r)

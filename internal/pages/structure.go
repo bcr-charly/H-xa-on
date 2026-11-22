@@ -259,7 +259,6 @@ par le script (fallback sans JS : opacité pleine). */
 	font-weight: 700;
 	z-index: 5;
 }
-.compet-note { max-width: 44rem; color: var(--texte-sombre); }
 .compet-grille {
 	position: absolute;
 	inset: 0;
@@ -278,8 +277,8 @@ par le script (fallback sans JS : opacité pleine). */
 	text-align: center;
 }
 .compet-ronde {
-	width: 10rem;
-	height: 10rem;
+	width: 13.5rem;
+	height: 13.5rem;
 	border-radius: 50%;
 	background: var(--elevation);
 	border: 2px solid var(--bordure);
@@ -400,11 +399,12 @@ régulières). */
 sport, nom du sport en dessous, même esprit que la grille équipe. */
 .sports-grille {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-	gap: 2.6rem 2.2rem;
-	justify-content: stretch;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.6rem 1.4rem;
 	width: 100%;
-	padding: 0 2.5vw;
+	height: min(62vh, 44rem);
+	grid-auto-rows: 1fr;
+	padding: 0 1.5vw;
 }
 .sport-case {
 	display: flex;
@@ -416,7 +416,8 @@ sport, nom du sport en dessous, même esprit que la grille équipe. */
 }
 .sport-carre {
 	width: 100%;
-	aspect-ratio: 1 / 1;
+	height: 100%;
+	aspect-ratio: auto;
 	border-radius: 18px;
 	background: var(--elevation);
 	border: 1px solid var(--bordure);
@@ -504,8 +505,9 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 		justify-content: center;
 	}
 	.compet-bulle { position: static; }
-	.compet-ronde { width: 8rem; height: 8rem; }
-	.sports-grille { grid-template-columns: repeat(2, minmax(9rem, 1fr)); gap: 1.6rem 0.8rem; padding: 0 1.5vw; }
+	.compet-ronde { width: 10rem; height: 10rem; }
+	.sports-grille { grid-template-columns: repeat(2, 1fr); gap: 1.2rem 0.8rem; height: auto; padding: 0 1.5vw; }
+	.sport-carre { aspect-ratio: 4 / 3; height: auto; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
 }
 `
@@ -705,7 +707,7 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 // à l'accueil.
 func logoPermanent(nomSite string) template.HTML {
 	return template.HTML(`<a class="logo-flottant" href="/" aria-label="Accueil">` +
-		`<img class="logo-petit" src="/assets/logo.svg" alt="` + template.HTMLEscapeString(nomSite) + `"></a>`)
+		`<img class="logo-petit" src="/assets/logo.jpg" alt="` + template.HTMLEscapeString(nomSite) + `"></a>`)
 }
 
 // pied rend le pied de page : identité du BDS, réseaux sociaux, liens
