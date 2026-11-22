@@ -1,0 +1,31 @@
+# Configuration de l'instance Héxaïon.
+# Modifier ce fichier puis relancer le binaire : aucune recompilation.
+# Toute clé inconnue est signalée au démarrage sans être fatale.
+
+serveur
+  port = 8080
+  nom  = BDS ENSIIE
+
+# Section optionnelle : palette par défaut livrée (thème sombre à accents dorés).
+palette
+  fond          = #101010
+  elevation     = #1E1E1E
+  clair         = #E9C46A
+  accent        = #C6A664
+  bordure       = #8A6D2F
+
+# Pages actives. Une page activée mais non embarquée dans le binaire produit
+# un avertissement au démarrage et est ignorée, jamais un plantage.
+pages
+  accueil       = ON
+  actus         = ON
+  equipe        = ON
+  planning      = OFF
+  competition   = OFF
+  sport         = OFF
+  boutique      = OFF
+
+# Secret de signature des cookies de session. À définir pour que les sessions
+# survivent à un redémarrage ; sans lui, un secret éphémère est généré.
+securite
+  secret = changez-ce-secret

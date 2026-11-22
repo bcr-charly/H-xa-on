@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" width="1600" height="900">
+  <title>Photo de l'équipe du BDS (remplacer par assets/equipe.jpg ou .png et adapter la page d'accueil)</title>
+  <defs>
+    <linearGradient id="fond" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1E1E1E"/>
+      <stop offset="1" stop-color="#101010"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#fond)"/>
+  <g fill="#C6A664" opacity="0.25">
+    <circle cx="500" cy="560" r="90"/>
+    <circle cx="700" cy="600" r="90"/>
+    <circle cx="900" cy="560" r="90"/>
+    <circle cx="1100" cy="600" r="90"/>
+    <rect x="410" y="660" width="180" height="240" rx="90"/>
+    <rect x="610" y="700" width="180" height="240" rx="90"/>
+    <rect x="810" y="660" width="180" height="240" rx="90"/>
+    <rect x="1010" y="700" width="180" height="240" rx="90"/>
+  </g>
+</svg>

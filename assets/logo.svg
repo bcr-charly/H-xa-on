@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <title>Logo BDS</title>
+  <g fill="none" stroke="#E9C46A" stroke-width="10" stroke-linejoin="round">
+    <path d="M120 24 L168 108 L72 108 Z"/>
+    <path d="M120 216 L72 132 L168 132 Z"/>
+  </g>
+  <circle cx="120" cy="120" r="14" fill="#C6A664"/>
+</svg>

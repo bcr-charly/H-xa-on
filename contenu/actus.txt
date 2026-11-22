@@ -1,0 +1,20 @@
+# Actualités du site, lues à l'affichage. La plus récente en tête :
+# trier par date décroissante ou laisser le site le faire.
+# Modifier ce fichier ne recompile rien : relancer le binaire suffit.
+
+[actu]
+titre = Ouverture des inscriptions au week-end d'intégration
+date = 2026-09-14
+texte = Les inscriptions au week-end d'intégration sont ouvertes.
+  Places limitées : premier arrivé, premier servi.
+image = assets/equipe.svg
+
+[actu]
+titre = Résultats de la coupe ENSIIE
+date = 2026-09-02
+texte = Victoire de l'équipe du BDS en finale de la coupe ENSIIE !
+
+[actu]
+titre = Reprise des entraînements
+date = 2026-08-28
+texte = Les entraînements reprennent à la rentrée, à la salle omnisports.

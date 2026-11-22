@@ -1,0 +1,22 @@
+# Membres du bureau, affichés dans la grille de la page Équipe.
+# Chaque bloc [membre] : nom, role, photo (fichier dans assets/), lien optionnel.
+
+[membre]
+nom = Prénom Nom
+role = Président·e
+photo = membre.svg
+
+[membre]
+nom = Prénom Nom
+role = Vice-président·e
+photo = membre.svg
+
+[membre]
+nom = Prénom Nom
+role = Trésorier·ère
+photo = membre.svg
+
+[membre]
+nom = Prénom Nom
+role = Secrétaire
+photo = membre.svg
