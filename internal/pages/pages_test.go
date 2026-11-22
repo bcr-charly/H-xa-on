@@ -94,11 +94,17 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, `class="fond-fixe"`) {
 		t.Error("fond fixe attendu sur la page d'accueil (le fond ne défile pas)")
 	}
-	if !strings.Contains(corps, `class="compet-barre"`) || !strings.Contains(corps, `id="competitions"`) {
+	if !strings.Contains(corps, `compet-barre fondu`) || !strings.Contains(corps, `id="competitions"`) {
 		t.Error("sous-page compétitions absente de la page d'accueil")
 	}
 	if !strings.Contains(corps, `class="compet-grille"`) {
 		t.Error("grille des compétitions absente")
+	}
+	if strings.Count(corps, "fondu") < 10 {
+		t.Error("fondus du défilement attendus sur la page d'accueil")
+	}
+	if strings.Contains(corps, "IntersectionObserver") {
+		t.Error("plus d'observer : les fondus sont pilotés par le défilement")
 	}
 	if !strings.Contains(corps, "bds_ensiie") || !strings.Contains(corps, "ensiie.fr") {
 		t.Error("liens du pied de page (Instagram, école) absents")

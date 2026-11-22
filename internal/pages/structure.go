@@ -224,12 +224,16 @@ lisibilité sur le fond fixe. */
 gauche et se centre en haut ; les bulles apparaissent ensuite. Quand on
 quitte la sous-page, la barre repart d'où elle est venue et les bulles
 disparaissent. */
+/* Fondus du défilement : chaque élément .fondu devient progressivement
+transparent quand il approche le haut de l'écran, et apparaît en arrivant
+du bas — plus il est haut, plus il est transparent ; le pilotage est fait
+par le script (fallback sans JS : opacité pleine). */
+.fondu { will-change: opacity; }
 .compet-barre {
 	position: absolute;
 	top: 7vh;
 	left: 50%;
-	transform: translate(-85vw, -55vh);
-	opacity: 0;
+	transform: translateX(-50%);
 	background: var(--clair);
 	color: var(--texte-clair);
 	border: 1px solid var(--bordure);
@@ -238,9 +242,7 @@ disparaissent. */
 	font-size: 1.3rem;
 	font-weight: 700;
 	z-index: 5;
-	transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.45s ease;
 }
-.compet.visible .compet-barre { transform: translate(-50%, 0); opacity: 1; }
 .compet-note { max-width: 44rem; color: var(--texte-sombre); }
 .compet-grille {
 	display: grid;
@@ -248,15 +250,6 @@ disparaissent. */
 	gap: 2.6rem 3rem;
 	justify-content: center;
 }
-.compet-bulle {
-	opacity: 0;
-	transform: translateY(2.5rem) scale(0.9);
-	transition: opacity 0.45s ease, transform 0.45s ease;
-}
-.compet.visible .compet-bulle { opacity: 1; transform: none; }
-.compet.visible .compet-bulle:nth-child(2) { transition-delay: 0.1s; }
-.compet.visible .compet-bulle:nth-child(3) { transition-delay: 0.2s; }
-.compet.visible .compet-bulle:nth-child(4) { transition-delay: 0.3s; }
 .compet-cellule {
 	display: flex;
 	flex-direction: column;
@@ -507,19 +500,38 @@ const script = `
 		}
 	});
 
-	/* Sous-page compétitions : visible seulement lorsqu'elle est à l'écran. */
-	var compet = document.querySelector(".compet");
-	if (compet) {
-		if (!("IntersectionObserver" in window)) {
-			compet.classList.add("visible");
-		} else {
-			var obs = new IntersectionObserver(function (entrees) {
-				entrees.forEach(function (e) {
-					compet.classList.toggle("visible", e.isIntersecting && e.intersectionRatio >= 0.35);
-				});
-			}, { threshold: [0, 0.35, 0.7] });
-			obs.observe(compet);
+	/* Fondus du défilement : chaque élément .fondu de la page d'accueil
+	s'efface quand son centre approche le haut de l'écran (plus il est haut,
+	plus il est transparent) et apparaît en montant depuis le bas. */
+	var fondus = Array.prototype.slice.call(document.querySelectorAll(".page-accueil .fondu"));
+	if (fondus.length > 0) {
+		var zone = 0.38;
+		function appliquerFondus() {
+			var vh = window.innerHeight;
+			var bord = vh * zone;
+			fondus.forEach(function (el) {
+				var r = el.getBoundingClientRect();
+				var centre = r.top + r.height / 2;
+				var oHaut = (centre - r.height * 0.05) / bord;
+				var oBas = (vh - centre - r.height * 0.05) / bord;
+				var o = Math.min(oHaut, oBas);
+				if (o < 0) { o = 0; } else if (o > 1) { o = 1; }
+				el.style.opacity = o;
+				el.style.pointerEvents = o < 0.1 ? "none" : "";
+			});
 		}
+		var demande = false;
+		function planifier() {
+			if (demande) return;
+			demande = true;
+			window.requestAnimationFrame(function () {
+				demande = false;
+				appliquerFondus();
+			});
+		}
+		window.addEventListener("scroll", planifier, { passive: true });
+		window.addEventListener("resize", planifier);
+		planifier();
 	}
 })();
 `

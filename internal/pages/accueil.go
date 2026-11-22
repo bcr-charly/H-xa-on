@@ -61,9 +61,9 @@ func (p *PageAccueil) sectionHero(locale string, connecte bool) string {
 	return fmt.Sprintf(`
 <section class="accueil-section accueil-hero">
 	<div class="accueil-contenu">
-		<img class="logo-grand" src="/assets/logo.svg" alt="%s">
-		<p class="accueil-slogan">%s</p>
-		%s
+		<img class="logo-grand fondu" src="/assets/logo.svg" alt="%s">
+		<p class="accueil-slogan fondu">%s</p>
+		<div class="fondu">%s</div>
 	</div>
 </section>`,
 		template.HTMLEscapeString(p.Noyau.Config.Nom),
@@ -98,16 +98,16 @@ func (p *PageAccueil) sectionPresentation(locale string) string {
 	return fmt.Sprintf(`
 <section class="accueil-section">
 	<div class="carte-presentation">
-		<div class="presentation-texte">
+		<div class="presentation-texte fondu">
 			<h2>%s</h2>
 			<p>%s</p>
 		</div>
-		<div class="presentation-photos">
+		<div class="presentation-photos fondu">
 			<figure class="bulle"><img src="/assets/logo.svg" alt=""></figure>
 			<figure class="bulle"><img src="%s" alt="%s"><figcaption class="bulle-legende">%s</figcaption></figure>
 		</div>
 	</div>
-	<a class="bouton" href="/equipe">%s</a>
+	<a class="bouton fondu" href="/equipe">%s</a>
 </section>`,
 		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.presentation.titre")),
 		template.HTMLEscapeString(texte),
@@ -134,7 +134,7 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 				image = "/assets/" + image
 			}
 			cellules.WriteString(fmt.Sprintf(
-				`<div class="compet-bulle"><a class="compet-cellule" href="/competition/%s">`+
+				`<div class="compet-bulle fondu"><a class="compet-cellule" href="/competition/%s">`+
 					`<span class="compet-ronde"><img src="%s" alt=""></span>`+
 					`<span class="compet-nom">%s</span></a></div>`,
 				template.HTMLEscapeString(slug(b.Texte("nom"))),
@@ -145,11 +145,11 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 	}
 	return fmt.Sprintf(`
 <section class="accueil-section compet" id="competitions">
-	<div class="compet-barre">%s</div>
-	<p class="compet-note">%s</p>
+	<div class="compet-barre fondu">%s</div>
+	<p class="compet-note fondu">%s</p>
 	<div class="compet-grille">
 		%s
-		<div class="compet-bulle compet-inscrire"><a class="compet-cellule" href="/inscriptions">`+
+		<div class="compet-bulle compet-inscrire fondu"><a class="compet-cellule" href="/inscriptions">`+
 		`<span class="compet-ronde">%s</span></a></div>
 	</div>
 </section>`,
