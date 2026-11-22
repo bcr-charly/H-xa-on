@@ -109,7 +109,11 @@ main { flex: 1; }
 /* couleur de la palette (fond élévation, bordure bronze, coins        */
 /* arrondis), dans le style du reste du site.                          */
 /* ------------------------------------------------------------------ */
-.langue-zone { position: relative; }
+.langue-zone {
+	position: absolute;
+	top: 0.5rem;
+	right: 2.25rem;
+}
 .langue-bouton {
 	display: inline-flex;
 	align-items: center;
@@ -151,34 +155,142 @@ main { flex: 1; }
 .langue-bloc summary::-webkit-details-marker { display: none; }
 .langue-bloc summary { list-style: none; }
 
-.accueil-hero {
-	position: relative;
-	min-height: 100vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	overflow: hidden;
-	text-align: center;
-}
+/* Page d'accueil : une grande page qui défile comme un assemblage de
+sous-pages. Le fond photo reste fixe ; seul le contenu monte et disparaît. */
+.fond-fixe { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
 .accueil-fond {
 	position: absolute;
 	inset: 0;
 	background-size: cover;
 	background-position: center;
-	filter: brightness(0.55);
-	z-index: 0;
+	filter: brightness(0.5);
 }
 .accueil-voile {
 	position: absolute;
 	inset: 0;
 	background: var(--fond);
-	opacity: 0.35;
-	z-index: 1;
+	opacity: 0.45;
 }
-.accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; padding: 1rem; }
+.accueil-section {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.6rem;
+	position: relative;
+	padding: 5.5rem 1rem 2.5rem;
+	text-align: center;
+}
+.accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
 .logo-grand { height: 14rem; width: auto; }
 .accueil-slogan { font-size: 1.35rem; max-width: 40rem; color: var(--texte-sombre); }
+
+/* Sous-page présentation : zones carrées à coins arrondis pour garder la
+lisibilité sur le fond fixe. */
+.carte-presentation {
+	background: var(--elevation);
+	border: 1px solid var(--bordure);
+	border-radius: 24px;
+	padding: 2.4rem;
+	display: flex;
+	gap: 2.6rem;
+	align-items: center;
+	max-width: 62rem;
+	width: 100%;
+}
+.presentation-texte { text-align: left; max-width: 34rem; }
+.presentation-texte h2 { color: var(--clair); margin-bottom: 1rem; font-size: 1.9rem; }
+.presentation-texte p { white-space: pre-line; line-height: 1.55; }
+.presentation-photos { display: flex; flex-direction: column; gap: 1.1rem; align-items: center; }
+.bulle {
+	position: relative;
+	width: 10.5rem;
+	height: 10.5rem;
+	border-radius: 50%;
+	background: var(--fond);
+	border: 2px solid var(--bordure);
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+}
+.bulle img { width: 100%; height: 100%; object-fit: cover; }
+.bulle-legende { color: var(--clair); font-size: 0.9rem; }
+
+/* Sous-page compétitions : la barre « Compétitions » surgit du coin haut
+gauche et se centre en haut ; les bulles apparaissent ensuite. Quand on
+quitte la sous-page, la barre repart d'où elle est venue et les bulles
+disparaissent. */
+.compet-barre {
+	position: absolute;
+	top: 7vh;
+	left: 50%;
+	transform: translate(-85vw, -55vh);
+	opacity: 0;
+	background: var(--clair);
+	color: var(--texte-clair);
+	border: 1px solid var(--bordure);
+	border-radius: 999px;
+	padding: 0.65rem 2.4rem;
+	font-size: 1.3rem;
+	font-weight: 700;
+	z-index: 5;
+	transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.45s ease;
+}
+.compet.visible .compet-barre { transform: translate(-50%, 0); opacity: 1; }
+.compet-note { max-width: 44rem; color: var(--texte-sombre); }
+.compet-grille {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(10rem, 15rem));
+	gap: 2.6rem 3rem;
+	justify-content: center;
+}
+.compet-bulle {
+	opacity: 0;
+	transform: translateY(2.5rem) scale(0.9);
+	transition: opacity 0.45s ease, transform 0.45s ease;
+}
+.compet.visible .compet-bulle { opacity: 1; transform: none; }
+.compet.visible .compet-bulle:nth-child(2) { transition-delay: 0.1s; }
+.compet.visible .compet-bulle:nth-child(3) { transition-delay: 0.2s; }
+.compet.visible .compet-bulle:nth-child(4) { transition-delay: 0.3s; }
+.compet-cellule {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.8rem;
+	text-align: center;
+}
+.compet-ronde {
+	width: 10rem;
+	height: 10rem;
+	border-radius: 50%;
+	background: var(--elevation);
+	border: 2px solid var(--bordure);
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: none;
+	color: var(--clair);
+	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+	transition: transform 0.2s ease;
+}
+.compet-cellule:hover .compet-ronde,
+.compet-cellule:active .compet-ronde { transform: scale(1.08); }
+.compet-ronde img { width: 100%; height: 100%; object-fit: cover; }
+.compet-nom { font-weight: 600; color: var(--texte-sombre); }
+.compet-inscrire .compet-ronde {
+	background: transparent;
+	border: 2px dashed var(--clair);
+	color: var(--clair);
+	font-weight: 700;
+	font-size: 1.05rem;
+}
+.compet-inscrire:hover .compet-ronde { background: var(--clair); color: var(--texte-clair); }
 
 .bouton {
 	display: inline-block;
@@ -315,7 +427,12 @@ régulières). */
 @media (max-width: 48rem) {
 	.logo-grand { height: 9rem; }
 	.accueil-slogan { font-size: 1.05rem; }
-	.header { padding: 0.5rem 4.5rem 0.5rem 5rem; }
+	.header { padding: 0.5rem 3.5rem 0.5rem 4.5rem; }
+	.langue-zone { right: 1rem; }
+	.carte-presentation { flex-direction: column; padding: 1.6rem; }
+	.presentation-texte { text-align: center; }
+	.compet-grille { grid-template-columns: repeat(2, minmax(8rem, 1fr)); gap: 1.8rem 1rem; }
+	.compet-ronde { width: 8rem; height: 8rem; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
 }
 `
@@ -389,6 +506,21 @@ const script = `
 			caché = true;
 		}
 	});
+
+	/* Sous-page compétitions : visible seulement lorsqu'elle est à l'écran. */
+	var compet = document.querySelector(".compet");
+	if (compet) {
+		if (!("IntersectionObserver" in window)) {
+			compet.classList.add("visible");
+		} else {
+			var obs = new IntersectionObserver(function (entrees) {
+				entrees.forEach(function (e) {
+					compet.classList.toggle("visible", e.isIntersecting && e.intersectionRatio >= 0.35);
+				});
+			}, { threshold: [0, 0.35, 0.7] });
+			obs.observe(compet);
+		}
+	}
 })();
 `
 
@@ -424,7 +556,7 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 		"planning":    "/planning",
 		"equipe":      "/equipe",
 		"sport":       "/sport",
-		"competition": "/competition",
+		"competition": "/#competitions",
 		"boutique":    "/boutique",
 	}
 	var onglets strings.Builder

@@ -1,0 +1,11 @@
+# Contenu de la page d'accueil.
+# Sous-page présentation : [presentation] texte (multi-lignes possibles en
+# indentant), president (légende sous la bulle), photo (fichier dans assets/).
+
+[presentation]
+texte = Le Bureau Des Sports de l'ENSIIE anime la vie sportive de l'école :
+  week-end d'intégration, sorties ski, tournois, entraînements et compétitions.
+  Une équipe de 19 bénévoles, un bureau et des respos motivés, et une seule
+  mission : faire bouger toute l'école.
+president = Ethan — Président
+photo = membre.svg
