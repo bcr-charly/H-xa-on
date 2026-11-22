@@ -79,7 +79,7 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, "/connexion") {
 		t.Error("bouton connexion absent")
 	}
-	if !strings.Contains(corps, "/assets/logo.svg") {
+	if !strings.Contains(corps, "/assets/logo.jpg") {
 		t.Error("logo permanent absent")
 	}
 	if !strings.Contains(corps, `class="logo-flottant"`) {
