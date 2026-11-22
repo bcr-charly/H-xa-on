@@ -162,25 +162,26 @@ sous-pages. Le fond photo reste fixe ; seul le contenu monte et disparaît. */
 	inset: 0;
 	background-size: cover;
 	background-position: center;
-	filter: brightness(0.32) saturate(0.5);
+	filter: brightness(0.48) saturate(0.8);
 }
 .accueil-voile {
 	position: absolute;
 	inset: 0;
 	background: var(--fond);
-	opacity: 0.55;
+	opacity: 0.42;
 }
 .accueil-section {
-	min-height: 88vh;
+	min-height: 76vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 1.1rem;
+	gap: 1rem;
 	position: relative;
-	padding: 4rem 1rem 1.5rem;
+	padding: 3.5rem 1rem 1.2rem;
 	text-align: center;
 }
+.accueil-hero { min-height: 92vh; }
 .accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
 .logo-grand { height: 20rem; width: auto; }
 .accueil-slogan { font-size: 1.35rem; max-width: 40rem; color: var(--texte-sombre); }
