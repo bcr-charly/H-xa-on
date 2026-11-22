@@ -72,9 +72,10 @@ func (p *PageAccueil) sectionHero(locale string, connecte bool) string {
 	)
 }
 
-// sectionPresentation est la deuxième sous-page : description rapide du
-// BDS dans une zone à coins arrondis, espace photo à droite (logo et
-// président en bulles rondes), bouton de redirection vers la page BDS.
+// sectionPresentation est la deuxième sous-page : la zone de texte
+// « Qui sommes-nous ? » est à gauche, au milieu en hauteur ; les bulles du
+// logo et du président sont à droite, hors de la zone de texte, le nom du
+// président écrit sous sa bulle. Bouton de redirection vers la page BDS.
 func (p *PageAccueil) sectionPresentation(locale string) string {
 	texte := kernel.Traduit(locale, "pied.description")
 	president := ""
@@ -96,15 +97,22 @@ func (p *PageAccueil) sectionPresentation(locale string) string {
 		legende = ""
 	}
 	return fmt.Sprintf(`
-<section class="accueil-section">
-	<div class="carte-presentation">
-		<div class="presentation-texte fondu">
-			<h2>%s</h2>
-			<p>%s</p>
+<section class="accueil-section presentation">
+	<div class="presentation-rangee">
+		<div class="carte-presentation fondu">
+			<div class="presentation-texte">
+				<h2>%s</h2>
+				<p>%s</p>
+			</div>
 		</div>
 		<div class="presentation-photos fondu">
-			<figure class="bulle"><img src="/assets/logo.svg" alt=""></figure>
-			<figure class="bulle"><img src="%s" alt="%s"><figcaption class="bulle-legende">%s</figcaption></figure>
+			<figure class="presentation-figure">
+				<span class="bulle"><img src="/assets/logo.svg" alt=""></span>
+			</figure>
+			<figure class="presentation-figure">
+				<span class="bulle"><img src="%s" alt="%s"></span>
+				<figcaption class="bulle-legende">%s</figcaption>
+			</figure>
 		</div>
 	</div>
 	<a class="bouton fondu" href="/equipe">%s</a>

@@ -186,25 +186,42 @@ sous-pages. Le fond photo reste fixe ; seul le contenu monte et disparaît. */
 .logo-grand { height: 14rem; width: auto; }
 .accueil-slogan { font-size: 1.35rem; max-width: 40rem; color: var(--texte-sombre); }
 
-/* Sous-page présentation : zones carrées à coins arrondis pour garder la
-lisibilité sur le fond fixe. */
+/* Sous-page présentation : la zone de texte « Qui sommes-nous ? » est à
+gauche, au milieu en hauteur ; les bulles du logo et du président sont à
+droite, hors de la zone de texte, nom du président sous sa bulle. */
+.presentation-rangee {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 3rem;
+	width: 100%;
+	max-width: 62rem;
+}
 .carte-presentation {
 	background: var(--elevation);
 	border: 1px solid var(--bordure);
 	border-radius: 24px;
 	padding: 2.4rem;
-	display: flex;
-	gap: 2.6rem;
-	align-items: center;
-	max-width: 62rem;
-	width: 100%;
+	flex: 0 1 34rem;
 }
-.presentation-texte { text-align: left; max-width: 34rem; }
+.presentation-texte { text-align: left; }
 .presentation-texte h2 { color: var(--clair); margin-bottom: 1rem; font-size: 1.9rem; }
 .presentation-texte p { white-space: pre-line; line-height: 1.55; }
-.presentation-photos { display: flex; flex-direction: column; gap: 1.1rem; align-items: center; }
+.presentation-photos {
+	display: flex;
+	flex-direction: column;
+	gap: 1.6rem;
+	align-items: center;
+	flex: none;
+}
+.presentation-figure {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.55rem;
+	margin: 0;
+}
 .bulle {
-	position: relative;
 	width: 10.5rem;
 	height: 10.5rem;
 	border-radius: 50%;
@@ -218,7 +235,7 @@ lisibilité sur le fond fixe. */
 	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
 }
 .bulle img { width: 100%; height: 100%; object-fit: cover; }
-.bulle-legende { color: var(--clair); font-size: 0.9rem; }
+.bulle-legende { color: var(--clair); font-size: 0.9rem; font-weight: 600; }
 
 /* Sous-page compétitions : la barre « Compétitions » surgit du coin haut
 gauche et se centre en haut ; les bulles apparaissent ensuite. Quand on
@@ -422,7 +439,8 @@ régulières). */
 	.accueil-slogan { font-size: 1.05rem; }
 	.header { padding: 0.5rem 3.5rem 0.5rem 4.5rem; }
 	.langue-zone { right: 1rem; }
-	.carte-presentation { flex-direction: column; padding: 1.6rem; }
+	.presentation-rangee { flex-direction: column; gap: 1.8rem; }
+	.carte-presentation { padding: 1.6rem; flex-basis: auto; }
 	.presentation-texte { text-align: center; }
 	.compet-grille { grid-template-columns: repeat(2, minmax(8rem, 1fr)); gap: 1.8rem 1rem; }
 	.compet-ronde { width: 8rem; height: 8rem; }
