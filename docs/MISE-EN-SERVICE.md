@@ -39,6 +39,9 @@ Sauvegardez, relancez le binaire. C'est tout.
   `competitions` (une par ligne indentée), `respo` et `contact`,
   `photo`/`photo2`, `horaires` (affichés à gauche) et `lieu` (à droite) ;
   le bouton « S'inscrire au ... » mène à l'onglet inscription.
+- Les sponsors affichés dans la dernière sous-page de l'accueil vivent
+  dans `contenu/sponsors.txt` : un bloc `[sponsor]` par carte avec `nom`
+  et `image` ; sans bloc, un message d'attente s'affiche.
 - Les compétitions affichées sur l'accueil vivent dans
   `contenu/competitions.txt` : un bloc `[compet]` par compétition avec
   `nom`, `image`, `description` (page dédiée `/competition/<nom>`),

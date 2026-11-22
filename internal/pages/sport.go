@@ -37,6 +37,7 @@ func (p *PageSport) Chemins() []string { return []string{"/sport/"} }
 func (p *PageSport) Servir(w http.ResponseWriter, r *http.Request) {
 	locale := kernel.LocaleDepuisRequete(r)
 	connecte := p.Noyau.CompteCourant(r) != ""
+	imageFond := "/assets/sport.svg"
 
 	cle := strings.Trim(strings.TrimPrefix(r.URL.Path, "/sport/"), "/")
 	blocs, err := kernel.ChargerContenus(p.DossierContenu + "/sports.txt")
@@ -56,10 +57,16 @@ func (p *PageSport) Servir(w http.ResponseWriter, r *http.Request) {
 		http.NotFound(w, r)
 		return
 	}
-	p.servirDetail(w, r, locale, connecte, sport)
+	if v := sport.Texte("image"); v != "" {
+		if !strings.HasPrefix(v, "/") {
+			v = "/assets/" + v
+		}
+		imageFond = v
+	}
+	p.servirDetail(w, r, locale, connecte, sport, imageFond)
 }
 
-func (p *PageSport) servirDetail(w http.ResponseWriter, r *http.Request, locale string, connecte bool, sport *kernel.Contenu) {
+func (p *PageSport) servirDetail(w http.ResponseWriter, r *http.Request, locale string, connecte bool, sport *kernel.Contenu, imageFond string) {
 	nom := sport.Texte("nom")
 
 	var competitions strings.Builder
@@ -129,6 +136,6 @@ func (p *PageSport) servirDetail(w http.ResponseWriter, r *http.Request, locale 
 		horairesLieu,
 		bouton,
 	)
-	contenu := template.HTML(string(components.Defaut.BandeTitre(nom)) + `<div class="conteneur">` + detail + `</div>`)
+	contenu := template.HTML(fondFixe(imageFond) + string(components.Defaut.BandeTitre(nom)) + `<div class="conteneur">` + detail + `</div>`)
 	p.Noyau.Rendu(w, http.StatusOK, page(p.Noyau, locale, p.Nom(), nom, contenu, connecte), nil)
 }
