@@ -144,13 +144,18 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 				image = "/assets/" + image
 			}
 			var position string
-			switch nb {
-			case 1:
-				position = "haut-droite"
-			case 2:
-				position = "bas-droite"
-			case 3:
-				position = "bas-gauche"
+			if b.Texte("position") != "" {
+				position = b.Texte("position")
+			} else {
+				switch nb {
+				case 1:
+					position = "haut-droite"
+				case 2:
+					position = "bas-droite"
+				case 3:
+					position = "bas-gauche"
+				}
+				nb++
 			}
 			cellules.WriteString(fmt.Sprintf(
 				`<div class="compet-bulle compet-pos-%s fondu"><a class="compet-cellule" href="/competition/%s">`+
@@ -161,7 +166,6 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 				template.HTMLEscapeString(image),
 				template.HTMLEscapeString(b.Texte("nom")),
 			))
-			nb++
 		}
 	}
 	return fmt.Sprintf(`

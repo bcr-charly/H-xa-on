@@ -12,7 +12,7 @@
 
 [sport]
 nom = Foot
-image = sport.svg
+image = foot.jpg
 presentation = Le foot est le sport collectif le plus pratiqué du BDS :
   entraînements conviviaux, matchs amicaux contre les autres associations
   et une équipe engagée dans les tournois inter-écoles.
@@ -21,26 +21,26 @@ competitions =
   FFSU
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = foot.jpg
 horaires = Jeudi 19h — 21h
 lieu = Stade municipal d'Évry
 
 [sport]
 nom = Basket
-image = sport.svg
+image = basket.jpg
 presentation = Le basket du BDS réunit tous les niveaux : dribbles,
   tirs et petites oppositions chaque semaine, dans la bonne humeur.
 competitions =
   TOSS
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = basket.jpg
 horaires = Mardi 20h — 22h
 lieu = Gymnase de l'ENSIIE
 
 [sport]
 nom = Volley
-image = sport.svg
+image = volley.jpg
 presentation = Le volley se joue en intérieur, en équipes de six :
   séances ouvertes aux débutants comme aux confirmés.
 competitions =
@@ -48,69 +48,69 @@ competitions =
   FFSU
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = volley.jpg
 horaires = Mercredi 19h — 21h
 lieu = Gymnase de l'ENSIIE
 
 [sport]
 nom = Rugby
-image = sport.svg
+image = rugby.webp
 presentation = Le rugby du BDS, à XV ou à touch, mêlent engagement et
   convivialité ; les sorties touristiques font partie de l'aventure.
 competitions =
   Coupe de l'X
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = rugby.webp
 horaires = Vendredi 18h — 20h
 lieu = Stade municipal d'Évry
 
 [sport]
 nom = Arts martiaux
-image = sport.svg
+image = arts-martiaux.jpg
 presentation = Karaté, judo, taekwondo : les cours d'arts martiaux du BDS
   couvrent la self-défense comme la pratique sportive, tous niveaux.
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = arts-martiaux.jpg
 horaires = Lundi 18h30 — 20h
 lieu = Dojo de la salle omnisports
 
 [sport]
 nom = Course
-image = sport.svg
+image = course.webp
 presentation = Sorties running chaque semaine, des boucles au bord de
   la Seine jusqu'aux trails, et un groupe engagé sur les courses FFSU.
 competitions =
   FFSU
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = course.webp
 horaires = Mardi 7h — 8h
 lieu = Berges de la Seine
 
 [sport]
 nom = Badminton
-image = sport.svg
+image = badminton.jpg
 presentation = Raquettes, volants et matchs en double : le badminton du
   BDS se joue en continu, dans une ambiance détendue.
 competitions =
   FFSU
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = badminton.jpg
 horaires = Jeudi 18h — 20h
 lieu = Gymnase de l'ENSIIE
 
 [sport]
 nom = Natation
-image = sport.svg
+image = natation.jpg
 presentation = Séances encadrées à la piscine municipale : endurance,
   perfectionnement des nages et préparation aux compétitions.
 competitions =
   FFSU
 respo = À définir
 contact = À définir
-photo = sport.svg
+photo = natation.jpg
 horaires = Vendredi 12h30 — 13h45
 lieu = Piscine des Évêches
