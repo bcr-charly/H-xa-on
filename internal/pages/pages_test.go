@@ -82,8 +82,36 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, "/assets/logo.svg") {
 		t.Error("logo permanent absent")
 	}
-	if strings.Contains(corps, "http://") || strings.Contains(corps, "https://") {
-		t.Error("ressource distante détectée")
+	if !strings.Contains(corps, `class="logo-flottant"`) {
+		t.Error("logo permanent (bouton menu home) absent")
+	}
+	if !strings.Contains(corps, `body class="page-accueil"`) {
+		t.Error("la page d'accueil doit porter la classe page-accueil")
+	}
+	if !strings.Contains(corps, `class="langue-bloc"`) || !strings.Contains(corps, `class="langue-menu"`) {
+		t.Error("onglet de langue attendu sous forme de menu ouvrable")
+	}
+	if !strings.Contains(corps, "bds_ensiie") || !strings.Contains(corps, "ensiie.fr") {
+		t.Error("liens du pied de page (Instagram, école) absents")
+	}
+	if !strings.Contains(corps, "Évry-Courcouronnes") {
+		t.Error("coordonnées du pied de page (mentions légales) absentes")
+	}
+	main := corps[strings.Index(corps, "<main>"):strings.Index(corps, "</main>")]
+	if strings.Contains(main, "http://") || strings.Contains(main, "https://") {
+		t.Error("ressource distante dans le contenu de la page (le pied de page doit rester la seule exception)")
+	}
+}
+
+func TestPageInterneHeaderBlanc(t *testing.T) {
+	racine := instanceTest(t)
+	_, ts := noyauTest(t, racine)
+	_, corps := get(t, ts.URL+"/equipe")
+	if !strings.Contains(corps, `body class="page-interne"`) {
+		t.Error("une page interne doit porter la classe page-interne (header blanc)")
+	}
+	if !strings.Contains(corps, "rangee-equipe") {
+		t.Error("rangées symétriques attendues sur la page équipe")
 	}
 }
 

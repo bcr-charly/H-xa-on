@@ -1,22 +1,102 @@
-# Membres du bureau, affichés dans la grille de la page Équipe.
+# Membres du bureau, affichés dans la grille symétrique de la page BDS.
 # Chaque bloc [membre] : nom, role, photo (fichier dans assets/), lien optionnel.
+# rang = bureau : affiché dans la rangée d'honneur (président, VP, trésorier).
+# Relancer le binaire après modification.
 
 [membre]
-nom = Prénom Nom
-role = Président·e
+nom = Ethan
+role = Président
+photo = membre.svg
+rang = bureau
+
+[membre]
+nom = Maxime
+role = Vice-président
+photo = membre.svg
+rang = bureau
+
+[membre]
+nom = Jodie
+role = Trésorière
+photo = membre.svg
+rang = bureau
+
+[membre]
+nom = Joseph
+role = Secrétaire général · chargé RE
 photo = membre.svg
 
 [membre]
-nom = Prénom Nom
-role = Vice-président·e
+nom = Maxime P
+role = Respo logi · chargé compet
 photo = membre.svg
 
 [membre]
-nom = Prénom Nom
-role = Trésorier·ère
+nom = Esteban
+role = Respo compétition
 photo = membre.svg
 
 [membre]
-nom = Prénom Nom
-role = Secrétaire
+nom = Juliette
+role = Respo comm
+photo = membre.svg
+
+[membre]
+nom = Martha
+role = Respo innov · chargé compet
+photo = membre.svg
+
+[membre]
+nom = Mina
+role = Chargée com · présidente de Dièse
+photo = membre.svg
+
+[membre]
+nom = Julien
+role = Chargé com
+photo = membre.svg
+
+[membre]
+nom = Baptiste
+role = Chargé logi
+photo = membre.svg
+
+[membre]
+nom = Emma
+role = Chargée logi
+photo = membre.svg
+
+[membre]
+nom = Loïc
+role = Chargé com
+photo = membre.svg
+
+[membre]
+nom = Ludivine
+role = Vice secrétaire
+photo = membre.svg
+
+[membre]
+nom = Maël
+role = Respo RE
+photo = membre.svg
+
+[membre]
+nom = Max
+role = Chargé logi
+photo = membre.svg
+
+[membre]
+nom = Paul
+role = Respo soirées · chargé innov
+photo = membre.svg
+
+[membre]
+nom = An Lâm
+role = Chargé com
+photo = membre.svg
+
+[membre]
+nom = Charly
+role = Chargé com · chargé relations RE · respo DSI
 photo = membre.svg

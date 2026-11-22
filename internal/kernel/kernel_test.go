@@ -35,7 +35,7 @@ securite
 	if cfg.Palette.Fond != "#202020" {
 		t.Errorf("palette : %+v", cfg.Palette)
 	}
-	if cfg.Palette.Accent != "#C6A664" {
+	if cfg.Palette.Accent != "#E8A400" {
 		t.Errorf("palette par défaut non conservée : %+v", cfg.Palette)
 	}
 	if !cfg.Pages["accueil"] || cfg.Pages["planning"] {
