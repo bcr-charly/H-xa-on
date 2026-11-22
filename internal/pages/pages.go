@@ -15,5 +15,6 @@ func Toutes(n *kernel.Noyau, dossierContenu string) []kernel.Page {
 		&PageConnexion{Noyau: n},
 		&PageCompetition{Noyau: n, DossierContenu: dossierContenu},
 		&PageInscriptions{Noyau: n, DossierContenu: dossierContenu},
+		&PageSport{Noyau: n, DossierContenu: dossierContenu},
 	}
 }

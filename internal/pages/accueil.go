@@ -134,6 +134,7 @@ func (p *PageAccueil) sectionPresentation(locale string) string {
 // disparaissent. Tout est piloté par l'IntersectionObserver du script commun.
 func (p *PageAccueil) sectionCompetitions(locale string) string {
 	var cellules strings.Builder
+	nb := 1
 	if blocs, err := kernel.ChargerContenus(p.DossierContenu + "/competitions.txt"); err == nil {
 		for _, b := range kernel.FiltreSections(blocs, "compet") {
 			image := b.Texte("image")
@@ -142,14 +143,25 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 			} else if !strings.HasPrefix(image, "/") {
 				image = "/assets/" + image
 			}
+			var position string
+			switch nb {
+			case 1:
+				position = "haut-droite"
+			case 2:
+				position = "bas-droite"
+			case 3:
+				position = "bas-gauche"
+			}
 			cellules.WriteString(fmt.Sprintf(
-				`<div class="compet-bulle fondu"><a class="compet-cellule" href="/competition/%s">`+
+				`<div class="compet-bulle compet-pos-%s fondu"><a class="compet-cellule" href="/competition/%s">`+
 					`<span class="compet-ronde"><img src="%s" alt=""></span>`+
 					`<span class="compet-nom">%s</span></a></div>`,
+				position,
 				template.HTMLEscapeString(slug(b.Texte("nom"))),
 				template.HTMLEscapeString(image),
 				template.HTMLEscapeString(b.Texte("nom")),
 			))
+			nb++
 		}
 	}
 	return fmt.Sprintf(`
@@ -158,7 +170,7 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 	<p class="compet-note fondu">%s</p>
 	<div class="compet-grille">
 		%s
-		<div class="compet-bulle compet-inscrire fondu"><a class="compet-cellule" href="/inscriptions">`+
+		<div class="compet-bulle compet-pos-haut-gauche compet-inscrire fondu"><a class="compet-cellule" href="/inscriptions">`+
 		`<span class="compet-ronde">%s</span></a></div>
 	</div>
 </section>`,
@@ -183,9 +195,10 @@ func (p *PageAccueil) sectionSports(locale string) string {
 				image = "/assets/" + image
 			}
 			cases.WriteString(fmt.Sprintf(
-				`<div class="sport-case fondu"><span class="sport-carre">`+
+				`<a class="sport-case fondu" href="/sport/%s"><span class="sport-carre">`+
 					`<img src="%s" alt=""></span>`+
-					`<span class="sport-nom">%s</span></div>`,
+					`<span class="sport-nom">%s</span></a>`,
+				template.HTMLEscapeString(slug(b.Texte("nom"))),
 				template.HTMLEscapeString(image),
 				template.HTMLEscapeString(b.Texte("nom")),
 			))

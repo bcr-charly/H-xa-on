@@ -247,7 +247,7 @@ par le script (fallback sans JS : opacité pleine). */
 .fondu { will-change: opacity; }
 .compet-barre {
 	position: absolute;
-	bottom: 10vh;
+	top: 8vh;
 	left: 50%;
 	transform: translateX(-50%);
 	background: var(--bordure);
@@ -261,11 +261,15 @@ par le script (fallback sans JS : opacité pleine). */
 }
 .compet-note { max-width: 44rem; color: var(--texte-sombre); }
 .compet-grille {
-	display: grid;
-	grid-template-columns: repeat(2, minmax(10rem, 15rem));
-	gap: 2.6rem 3rem;
-	justify-content: center;
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
 }
+.compet-bulle { position: absolute; pointer-events: auto; }
+.compet-pos-haut-droite { top: 22vh; right: 9vw; }
+.compet-pos-bas-droite { bottom: 20vh; right: 22vw; }
+.compet-pos-bas-gauche { bottom: 20vh; left: 22vw; }
+.compet-pos-haut-gauche { top: 22vh; left: 9vw; }
 .compet-cellule {
 	display: flex;
 	flex-direction: column;
@@ -396,17 +400,18 @@ régulières). */
 sport, nom du sport en dessous, même esprit que la grille équipe. */
 .sports-grille {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
-	gap: 2rem 1.4rem;
-	justify-content: center;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 2.6rem 2.2rem;
+	justify-content: stretch;
 	width: 100%;
-	max-width: 62rem;
+	padding: 0 2.5vw;
 }
 .sport-case {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 0.8rem;
+	justify-content: center;
+	gap: 0.9rem;
 	text-align: center;
 }
 .sport-carre {
@@ -424,6 +429,23 @@ sport, nom du sport en dessous, même esprit que la grille équipe. */
 .sport-case:hover .sport-carre, .sport-case:active .sport-carre { transform: scale(1.05); }
 .sport-carre img { width: 100%; height: 100%; object-fit: cover; }
 .sport-nom { font-weight: 600; color: var(--texte-sombre); }
+
+/* Page dédiée d'un sport : présentation du sport au BDS, compétitions
+possibles, respo et contacts, photos, horaires (gauche) et lieu
+(droite), bouton « S'inscrire au ... ». */
+.sport-detail { max-width: 56rem; margin: 0 auto; display: flex; flex-direction: column; gap: 1.4rem; }
+.sport-detail h1 { color: var(--clair); font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
+.sport-detail-intro { background: var(--elevation); border: 1px solid var(--bordure); border-radius: 18px; padding: 1.4rem 1.6rem; white-space: pre-line; line-height: 1.55; }
+.sport-detail-bloc { background: var(--elevation); border: 1px solid var(--bordure); border-radius: 18px; padding: 1.2rem 1.6rem; }
+.sport-detail-bloc h2 { color: var(--accent); font-size: 1.15rem; margin-bottom: 0.6rem; }
+.sport-detail-bloc ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.sport-detail-bloc p { white-space: pre-line; line-height: 1.5; }
+.sport-horaires-lieu { display: flex; gap: 1.4rem; flex-wrap: wrap; }
+.sport-horaires-lieu > div { flex: 1 1 14rem; background: var(--elevation); border: 1px solid var(--bordure); border-radius: 18px; padding: 1.2rem 1.6rem; }
+.sport-horaires-lieu h2 { color: var(--accent); font-size: 1.15rem; margin-bottom: 0.6rem; }
+.sport-photos { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+.sport-photos img { height: 11rem; width: auto; max-width: 100%; border-radius: 14px; border: 1px solid var(--bordure); object-fit: cover; }
+.sport-inscrire { text-align: center; margin-top: 0.6rem; }
 
 /* ------------------------------------------------------------------ */
 /* Pied de page : identité, réseaux, liens rapides, informations,      */
@@ -474,9 +496,16 @@ sport, nom du sport en dessous, même esprit que la grille équipe. */
 	.presentation-rangee { flex-direction: column; gap: 1.8rem; }
 	.carte-presentation { padding: 1.6rem; flex-basis: auto; }
 	.presentation-texte { text-align: center; }
-	.compet-grille { grid-template-columns: repeat(2, minmax(8rem, 1fr)); gap: 1.8rem 1rem; }
+	.compet-grille {
+		position: static;
+		display: grid;
+		grid-template-columns: repeat(2, minmax(8rem, 1fr));
+		gap: 1.8rem 1rem;
+		justify-content: center;
+	}
+	.compet-bulle { position: static; }
 	.compet-ronde { width: 8rem; height: 8rem; }
-	.sports-grille { grid-template-columns: repeat(3, minmax(7rem, 1fr)); gap: 1.6rem 0.8rem; }
+	.sports-grille { grid-template-columns: repeat(2, minmax(9rem, 1fr)); gap: 1.6rem 0.8rem; padding: 0 1.5vw; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
 }
 `

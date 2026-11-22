@@ -34,6 +34,11 @@ Sauvegardez, relancez le binaire. C'est tout.
   `president` (légende sous la bulle), `photo` (fichier dans `assets/`).
 - Les sports affichés dans la sous-page « Sports » vivent dans
   `contenu/sports.txt` : un bloc `[sport]` par sport avec `nom` et `image`.
+  Cliquer sur une case ouvre la page dédiée du sport (`/sport/<nom>`),
+  alimentée par les mêmes champs : `presentation` (multi-lignes),
+  `competitions` (une par ligne indentée), `respo` et `contact`,
+  `photo`/`photo2`, `horaires` (affichés à gauche) et `lieu` (à droite) ;
+  le bouton « S'inscrire au ... » mène à l'onglet inscription.
 - Les compétitions affichées sur l'accueil vivent dans
   `contenu/competitions.txt` : un bloc `[compet]` par compétition avec
   `nom`, `image`, `description` (page dédiée `/competition/<nom>`),
