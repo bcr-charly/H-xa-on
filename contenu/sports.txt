@@ -1,0 +1,36 @@
+# Sports du BDS, affichés sur la sous-page « Sports » de l'accueil.
+# Un bloc [sport] par sport : nom et image (fichier dans assets/,
+# sport.svg par défaut). Remplacer les images par de vraies photos suffit,
+# aucune recompilation.
+
+[sport]
+nom = Foot
+image = sport.svg
+
+[sport]
+nom = Basket
+image = sport.svg
+
+[sport]
+nom = Volley
+image = sport.svg
+
+[sport]
+nom = Rugby
+image = sport.svg
+
+[sport]
+nom = Arts martiaux
+image = sport.svg
+
+[sport]
+nom = Course
+image = sport.svg
+
+[sport]
+nom = Badminton
+image = sport.svg
+
+[sport]
+nom = Natation
+image = sport.svg

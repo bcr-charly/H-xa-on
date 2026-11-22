@@ -32,6 +32,8 @@ Sauvegardez, relancez le binaire. C'est tout.
 - La sous-page présentation de l'accueil vit dans
   `contenu/accueil.txt` : `texte` (multi-lignes en indentant),
   `president` (légende sous la bulle), `photo` (fichier dans `assets/`).
+- Les sports affichés dans la sous-page « Sports » vivent dans
+  `contenu/sports.txt` : un bloc `[sport]` par sport avec `nom` et `image`.
 - Les compétitions affichées sur l'accueil vivent dans
   `contenu/competitions.txt` : un bloc `[compet]` par compétition avec
   `nom`, `image`, `description` (page dédiée `/competition/<nom>`),
