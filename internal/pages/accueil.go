@@ -32,19 +32,21 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 	connecte := p.Noyau.CompteCourant(r) != ""
 
 	contenu := template.HTML(
-		fondFixe() +
+		fondFixe("/assets/fond-accueil.jpg") +
 			p.sectionHero(locale, connecte) +
 			p.sectionPresentation(locale) +
 			p.sectionCompetitions(locale) +
-			p.sectionSports(locale))
+			p.sectionSports(locale) +
+			p.sectionSponsors(locale))
 	p.Noyau.Rendu(w, http.StatusOK, page(p.Noyau, locale, p.Nom(), "", contenu, connecte), nil)
 }
 
-// fondFixe rend la couche de fond : photo assombrie par un voile de la
-// couleur de fond, fixe pendant tout le défilement de la page.
-func fondFixe() string {
+// fondFixe rend la couche de fond pour une page : photo assombrie et
+// désaturée par un voile de la couleur de fond, fixe pendant tout le
+// défilement — assez discrète pour faire arrière-plan et pas photo.
+func fondFixe(image string) string {
 	return `<div class="fond-fixe" aria-hidden="true">` +
-		`<div class="accueil-fond" style="background-image:url('/assets/equipe.svg')"></div>` +
+		`<div class="accueil-fond" style="background-image:url('` + image + `')"></div>` +
 		`<div class="accueil-voile"></div></div>`
 }
 
@@ -215,6 +217,47 @@ func (p *PageAccueil) sectionSports(locale string) string {
 </section>`,
 		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.sports.titre")),
 		cases.String(),
+	)
+}
+
+// sectionSponsors est la dernière sous-page : l'espace sponsors, juste
+// avant les mentions légales. Cartes à coins arrondis depuis
+// contenu/sports.txt non : contenu/sponsors.txt — un bloc [sponsor] par
+// carte (nom, image) ; à défaut, un message d'attente.
+func (p *PageAccueil) sectionSponsors(locale string) string {
+	var cases strings.Builder
+	if blocs, err := kernel.ChargerContenus(p.DossierContenu + "/sponsors.txt"); err == nil {
+		for _, b := range kernel.FiltreSections(blocs, "sponsor") {
+			image := b.Texte("image")
+			if image == "" {
+				continue
+			} else if !strings.HasPrefix(image, "/") {
+				image = "/assets/" + image
+			}
+			cases.WriteString(fmt.Sprintf(
+				`<div class="sponsor-case fondu"><span class="sponsor-carre">`+
+					`<img src="%s" alt="%s"></span>`+
+					`<span class="sponsor-nom">%s</span></div>`,
+				template.HTMLEscapeString(image),
+				template.HTMLEscapeString(b.Texte("nom")),
+				template.HTMLEscapeString(b.Texte("nom")),
+			))
+		}
+	}
+	corps := cases.String()
+	if corps == "" {
+		corps = fmt.Sprintf(`<p class="sponsor-vide fondu">%s</p>`,
+			template.HTMLEscapeString(kernel.Traduit(locale, "accueil.sponsors.vide")))
+	}
+	return fmt.Sprintf(`
+<section class="accueil-section sponsors" id="sponsors">
+	<h2 class="accueil-slogan fondu">%s</h2>
+	<div class="sponsors-grille">
+		%s
+	</div>
+</section>`,
+		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.sponsors.titre")),
+		corps,
 	)
 }
 

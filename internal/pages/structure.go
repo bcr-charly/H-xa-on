@@ -162,23 +162,23 @@ sous-pages. Le fond photo reste fixe ; seul le contenu monte et disparaît. */
 	inset: 0;
 	background-size: cover;
 	background-position: center;
-	filter: brightness(0.5);
+	filter: brightness(0.32) saturate(0.5);
 }
 .accueil-voile {
 	position: absolute;
 	inset: 0;
 	background: var(--fond);
-	opacity: 0.45;
+	opacity: 0.55;
 }
 .accueil-section {
-	min-height: 100vh;
+	min-height: 88vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 1.6rem;
+	gap: 1.1rem;
 	position: relative;
-	padding: 5.5rem 1rem 2.5rem;
+	padding: 4rem 1rem 1.5rem;
 	text-align: center;
 }
 .accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
@@ -325,7 +325,7 @@ par le script (fallback sans JS : opacité pleine). */
 }
 
 .bande-titre {
-	padding: 7rem 1rem 2.5rem;
+	padding: 5rem 1rem 1.6rem;
 	text-align: center;
 }
 .bande-titre h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
@@ -351,22 +351,21 @@ régulières). */
 .grille-equipe {
 	display: flex;
 	flex-direction: column;
-	gap: 2.4rem;
-	padding-bottom: 3rem;
-	align-items: center;
+	gap: 2rem;
+	width: 100%;
+	align-items: stretch;
 }
 .rangee-equipe {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	gap: 2rem 1rem;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.6rem 1rem;
 	width: 100%;
+	justify-items: center;
 }
-.rangee-equipe > * { flex: 0 1 11rem; }
 .icone-ronde { text-align: center; transition: transform 0.2s ease; }
 .icone-ronde:hover, .icone-ronde:active { transform: scale(1.08); }
 .icone-image {
-	width: 9rem; height: 9rem;
+	width: 12rem; height: 12rem;
 	border-radius: 50%;
 	object-fit: cover;
 	border: 2px solid var(--bordure);
@@ -450,6 +449,41 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 .sport-photos img { height: 11rem; width: auto; max-width: 100%; border-radius: 14px; border: 1px solid var(--bordure); object-fit: cover; }
 .sport-inscrire { text-align: center; margin-top: 0.6rem; }
 
+/* Sous-page sponsors : cartes rectangulaires à coins arrondis, nom en
+dessous ; l'espace attend les logos des partenaires du BDS. */
+.sponsors-grille {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+	gap: 2rem 1.4rem;
+	width: 100%;
+	height: min(30vh, 22rem);
+	padding: 0 1.5vw;
+}
+.sponsor-case {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.8rem;
+	text-align: center;
+}
+.sponsor-carre {
+	width: 100%;
+	height: 100%;
+	border-radius: 18px;
+	background: var(--elevation);
+	border: 1px solid var(--bordure);
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease;
+}
+.sponsor-case:hover .sponsor-carre { transform: scale(1.04); }
+.sponsor-carre img { width: 100%; height: 100%; object-fit: contain; padding: 8%; }
+.sponsor-nom { font-weight: 600; color: var(--texte-sombre); }
+.sponsor-vide { max-width: 40rem; color: var(--texte-sombre); }
+
 /* ------------------------------------------------------------------ */
 /* Pied de page : identité, réseaux, liens rapides, informations,      */
 /* contact — sur chaque page.                                          */
@@ -457,10 +491,8 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 .pied {
 	background: var(--elevation);
 	border-top: 1px solid var(--bordure);
-	margin-top: auto;
+	margin-top: 0;
 }
-	position: relative;
-	z-index: 10;
 .pied-grille {
 	max-width: 62rem;
 	margin: 0 auto;
@@ -511,6 +543,9 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 	.compet-bulle { position: static; }
 	.compet-ronde { width: 11rem; height: 11rem; }
 	.sports-grille { grid-template-columns: repeat(2, 1fr); gap: 1.2rem 0.8rem; height: auto; padding: 0 1.5vw; }
+	.sponsors-grille { grid-template-columns: repeat(2, 1fr); height: auto; }
+	.sponsor-carre { aspect-ratio: 16 / 9; }
+	.icone-image { width: 8.5rem; height: 8.5rem; }
 	.sport-carre { aspect-ratio: 4 / 3; height: auto; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
 }
