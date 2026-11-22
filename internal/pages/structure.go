@@ -182,7 +182,7 @@ sous-pages. Le fond photo reste fixe ; seul le contenu monte et disparaît. */
 	text-align: center;
 }
 .accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
-.logo-grand { height: 14rem; width: auto; }
+.logo-grand { height: 20rem; width: auto; }
 .accueil-slogan { font-size: 1.35rem; max-width: 40rem; color: var(--texte-sombre); }
 
 /* Sous-page présentation : la zone de texte « Qui sommes-nous ? » est à
@@ -293,7 +293,7 @@ par le script (fallback sans JS : opacité pleine). */
 }
 .compet-cellule:hover .compet-ronde,
 .compet-cellule:active .compet-ronde { transform: scale(1.08); }
-.compet-ronde img { width: 100%; height: 100%; object-fit: cover; }
+.compet-ronde img { width: 100%; height: 100%; object-fit: contain; padding: 9%; }
 .compet-nom { font-weight: 600; color: var(--texte-sombre); }
 .compet-inscrire .compet-ronde {
 	background: transparent;
@@ -490,7 +490,7 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 	text-align: center;
 }
 @media (max-width: 48rem) {
-	.logo-grand { height: 9rem; }
+	.logo-grand { height: 13rem; }
 	.accueil-slogan { font-size: 1.05rem; }
 	.header { padding: 0.5rem 3.5rem 0.5rem 4.5rem; }
 	.langue-zone { right: 1rem; }
@@ -707,7 +707,7 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 // à l'accueil.
 func logoPermanent(nomSite string) template.HTML {
 	return template.HTML(`<a class="logo-flottant" href="/" aria-label="Accueil">` +
-		`<img class="logo-petit" src="/assets/logo.jpg" alt="` + template.HTMLEscapeString(nomSite) + `"></a>`)
+		`<img class="logo-petit" src="/assets/logo.png" alt="` + template.HTMLEscapeString(nomSite) + `"></a>`)
 }
 
 // pied rend le pied de page : identité du BDS, réseaux sociaux, liens

@@ -62,7 +62,7 @@ func (p *PageAccueil) sectionHero(locale string, connecte bool) string {
 	return fmt.Sprintf(`
 <section class="accueil-section accueil-hero">
 	<div class="accueil-contenu">
-		<img class="logo-grand fondu" src="/assets/logo.jpg" alt="%s">
+		<img class="logo-grand fondu" src="/assets/logo.png" alt="%s">
 		<p class="accueil-slogan fondu">%s</p>
 		<div class="fondu">%s</div>
 	</div>
@@ -108,7 +108,7 @@ func (p *PageAccueil) sectionPresentation(locale string) string {
 		</div>
 		<div class="presentation-photos fondu">
 			<figure class="presentation-figure">
-				<span class="bulle"><img src="/assets/logo.jpg" alt=""></span>
+				<span class="bulle"><img src="/assets/logo.png" alt=""></span>
 			</figure>
 			<figure class="presentation-figure">
 				<span class="bulle"><img src="%s" alt="%s"></span>
