@@ -44,7 +44,7 @@ Sauvegardez, relancez le binaire. C'est tout.
   `nom`, `image`, `description` (page dédiée `/competition/<nom>`),
   `slug` optionnel. La bulle « s'inscrire » mène à la page
   `/inscriptions`.
-- Les images vont dans `assets/`, le logo est `assets/logo.jpg`.
+- Les images vont dans `assets/`, le logo est `assets/logo.png` (fond transparent).
 
 Après modification, relancez le binaire pour recharger les contenus.
 
