@@ -91,6 +91,15 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, `class="langue-bloc"`) || !strings.Contains(corps, `class="langue-menu"`) {
 		t.Error("onglet de langue attendu sous forme de menu ouvrable")
 	}
+	if !strings.Contains(corps, `class="fond-fixe"`) {
+		t.Error("fond fixe attendu sur la page d'accueil (le fond ne défile pas)")
+	}
+	if !strings.Contains(corps, `class="compet-barre"`) || !strings.Contains(corps, `id="competitions"`) {
+		t.Error("sous-page compétitions absente de la page d'accueil")
+	}
+	if !strings.Contains(corps, `class="compet-grille"`) {
+		t.Error("grille des compétitions absente")
+	}
 	if !strings.Contains(corps, "bds_ensiie") || !strings.Contains(corps, "ensiie.fr") {
 		t.Error("liens du pied de page (Instagram, école) absents")
 	}

@@ -21,7 +21,7 @@ pages
   actus         = ON
   equipe        = ON
   planning      = OFF
-  competition   = OFF
+  competition   = ON
   sport         = OFF
   boutique      = OFF
 
