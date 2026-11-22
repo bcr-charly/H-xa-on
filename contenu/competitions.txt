@@ -24,3 +24,11 @@ image = ffsu.jpg
 description = Les compétitions FFSU (Fédération Française du Sport
   Universitaire) opposent les universités et écoles toute l'année,
   du départemental aux France universitaires.
+
+[compet]
+nom = ENSIIE-SPORT
+position = centre
+image = sport.svg
+description = ENSIIE-SPORT, la section e-sport du BDS : tournois internes,
+  parties en ligne entre élèves et représentation de l'école sur les
+  compétitions universitaires de jeux vidéo.

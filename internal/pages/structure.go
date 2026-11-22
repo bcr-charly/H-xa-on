@@ -269,6 +269,7 @@ par le script (fallback sans JS : opacité pleine). */
 .compet-pos-bas-droite { bottom: 20vh; right: 22vw; }
 .compet-pos-bas-gauche { bottom: 20vh; left: 22vw; }
 .compet-pos-haut-gauche { top: 22vh; left: 9vw; }
+.compet-pos-centre { top: 26vh; left: 50%; transform: translateX(-50%); }
 .compet-cellule {
 	display: flex;
 	flex-direction: column;
@@ -277,8 +278,8 @@ par le script (fallback sans JS : opacité pleine). */
 	text-align: center;
 }
 .compet-ronde {
-	width: 13.5rem;
-	height: 13.5rem;
+	width: 16rem;
+	height: 16rem;
 	border-radius: 50%;
 	background: var(--elevation);
 	border: 2px solid var(--bordure);
@@ -402,7 +403,7 @@ sport, nom du sport en dessous, même esprit que la grille équipe. */
 	grid-template-columns: repeat(4, 1fr);
 	gap: 1.6rem 1.4rem;
 	width: 100%;
-	height: min(62vh, 44rem);
+	height: min(52vh, 38rem);
 	grid-auto-rows: 1fr;
 	padding: 0 1.5vw;
 }
@@ -430,6 +431,7 @@ sport, nom du sport en dessous, même esprit que la grille équipe. */
 .sport-case:hover .sport-carre, .sport-case:active .sport-carre { transform: scale(1.05); }
 .sport-carre img { width: 100%; height: 100%; object-fit: cover; }
 .sport-nom { font-weight: 600; color: var(--texte-sombre); }
+.accueil-section.sports { padding-bottom: 6rem; }
 
 /* Page dédiée d'un sport : présentation du sport au BDS, compétitions
 possibles, respo et contacts, photos, horaires (gauche) et lieu
@@ -457,6 +459,8 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 	border-top: 1px solid var(--bordure);
 	margin-top: auto;
 }
+	position: relative;
+	z-index: 10;
 .pied-grille {
 	max-width: 62rem;
 	margin: 0 auto;
@@ -505,7 +509,7 @@ possibles, respo et contacts, photos, horaires (gauche) et lieu
 		justify-content: center;
 	}
 	.compet-bulle { position: static; }
-	.compet-ronde { width: 10rem; height: 10rem; }
+	.compet-ronde { width: 11rem; height: 11rem; }
 	.sports-grille { grid-template-columns: repeat(2, 1fr); gap: 1.2rem 0.8rem; height: auto; padding: 0 1.5vw; }
 	.sport-carre { aspect-ratio: 4 / 3; height: auto; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
