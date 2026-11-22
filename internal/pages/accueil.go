@@ -35,7 +35,8 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 		fondFixe() +
 			p.sectionHero(locale, connecte) +
 			p.sectionPresentation(locale) +
-			p.sectionCompetitions(locale))
+			p.sectionCompetitions(locale) +
+			p.sectionSports(locale))
 	p.Noyau.Rendu(w, http.StatusOK, page(p.Noyau, locale, p.Nom(), "", contenu, connecte), nil)
 }
 
@@ -165,6 +166,40 @@ func (p *PageAccueil) sectionCompetitions(locale string) string {
 		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.compet.note")),
 		cellules.String(),
 		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.compet.inscrire")),
+	)
+}
+
+// sectionSports est la quatrième sous-page : les sports du BDS, un bloc
+// [sport] de contenu/sports.txt par case carrée à coins arrondis — photo
+// du sport, nom du sport en dessous. Même fondu que le reste de la page.
+func (p *PageAccueil) sectionSports(locale string) string {
+	var cases strings.Builder
+	if blocs, err := kernel.ChargerContenus(p.DossierContenu + "/sports.txt"); err == nil {
+		for _, b := range kernel.FiltreSections(blocs, "sport") {
+			image := b.Texte("image")
+			if image == "" {
+				image = "/assets/sport.svg"
+			} else if !strings.HasPrefix(image, "/") {
+				image = "/assets/" + image
+			}
+			cases.WriteString(fmt.Sprintf(
+				`<div class="sport-case fondu"><span class="sport-carre">`+
+					`<img src="%s" alt=""></span>`+
+					`<span class="sport-nom">%s</span></div>`,
+				template.HTMLEscapeString(image),
+				template.HTMLEscapeString(b.Texte("nom")),
+			))
+		}
+	}
+	return fmt.Sprintf(`
+<section class="accueil-section sports" id="sports">
+	<h2 class="accueil-slogan fondu">%s</h2>
+	<div class="sports-grille">
+		%s
+	</div>
+</section>`,
+		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.sports.titre")),
+		cases.String(),
 	)
 }
 

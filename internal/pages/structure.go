@@ -76,11 +76,10 @@ main { flex: 1; }
 	gap: 1rem;
 	padding: 0.5rem 5rem 0.5rem 5.5rem;
 	transition: transform 0.25s ease, background-color 0.25s ease;
-	color: var(--texte-clair);
+	color: var(--texte-sombre);
+	background: transparent;
 }
 .header.cachee { transform: translateY(-100%); }
-.page-accueil .header { color: var(--texte-sombre); background: transparent; }
-.page-interne .header { background: var(--blanc); }
 .nav-barre {
 	display: flex;
 	gap: 0.25rem;
@@ -248,11 +247,11 @@ par le script (fallback sans JS : opacité pleine). */
 .fondu { will-change: opacity; }
 .compet-barre {
 	position: absolute;
-	top: 7vh;
+	bottom: 10vh;
 	left: 50%;
 	transform: translateX(-50%);
-	background: var(--clair);
-	color: var(--texte-clair);
+	background: var(--bordure);
+	color: var(--texte-sombre);
 	border: 1px solid var(--bordure);
 	border-radius: 999px;
 	padding: 0.65rem 2.4rem;
@@ -295,19 +294,19 @@ par le script (fallback sans JS : opacité pleine). */
 .compet-nom { font-weight: 600; color: var(--texte-sombre); }
 .compet-inscrire .compet-ronde {
 	background: transparent;
-	border: 2px dashed var(--clair);
-	color: var(--clair);
+	border: 2px dashed var(--bordure);
+	color: var(--texte-sombre);
 	font-weight: 700;
 	font-size: 1.05rem;
 }
-.compet-inscrire:hover .compet-ronde { background: var(--clair); color: var(--texte-clair); }
+.compet-inscrire:hover .compet-ronde { background: var(--bordure); color: var(--texte-sombre); }
 
 .bouton {
 	display: inline-block;
 	padding: 0.7rem 1.8rem;
 	border-radius: 999px;
-	background: var(--clair);
-	color: var(--texte-clair);
+	background: var(--bordure);
+	color: var(--texte-sombre);
 	border: 1px solid var(--bordure);
 	font-size: 1.05rem;
 	font-weight: 600;
@@ -393,6 +392,39 @@ régulières). */
 }
 .erreur { color: var(--clair); }
 
+/* Sous-page Sports : cases carrées à coins arrondis avec la photo du
+sport, nom du sport en dessous, même esprit que la grille équipe. */
+.sports-grille {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(10rem, 12rem));
+	gap: 2rem 1.4rem;
+	justify-content: center;
+	width: 100%;
+	max-width: 62rem;
+}
+.sport-case {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.8rem;
+	text-align: center;
+}
+.sport-carre {
+	width: 100%;
+	aspect-ratio: 1 / 1;
+	border-radius: 18px;
+	background: var(--elevation);
+	border: 1px solid var(--bordure);
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.2s ease;
+}
+.sport-case:hover .sport-carre, .sport-case:active .sport-carre { transform: scale(1.05); }
+.sport-carre img { width: 100%; height: 100%; object-fit: cover; }
+.sport-nom { font-weight: 600; color: var(--texte-sombre); }
+
 /* ------------------------------------------------------------------ */
 /* Pied de page : identité, réseaux, liens rapides, informations,      */
 /* contact — sur chaque page.                                          */
@@ -444,6 +476,7 @@ régulières). */
 	.presentation-texte { text-align: center; }
 	.compet-grille { grid-template-columns: repeat(2, minmax(8rem, 1fr)); gap: 1.8rem 1rem; }
 	.compet-ronde { width: 8rem; height: 8rem; }
+	.sports-grille { grid-template-columns: repeat(3, minmax(7rem, 1fr)); gap: 1.6rem 0.8rem; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
 }
 `
@@ -585,7 +618,7 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 		"actus":       "/actus",
 		"planning":    "/planning",
 		"equipe":      "/equipe",
-		"sport":       "/sport",
+		"sport":       "/#sports",
 		"competition": "/#competitions",
 		"boutique":    "/boutique",
 	}
