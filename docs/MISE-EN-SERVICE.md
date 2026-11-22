@@ -25,7 +25,10 @@ Sauvegardez, relancez le binaire. C'est tout.
   ligne du texte) et `image` (fichier dans `assets/`). Les plus récentes en
   tête.
 - L'équipe vit dans `contenu/equipe.txt` : un bloc `[membre]` par personne,
-  avec `nom`, `role`, `photo` (fichier dans `assets/`), `lien` optionnel.
+  avec `nom`, `role`, `photo` (fichier dans `assets/`), `lien` optionnel et
+  `rang = bureau` pour les trois premiers postes (président, VP, trésorier),
+  affichés dans la rangée d'honneur. Les autres membres se rangent en
+  grille symétrique, centrée, sans recompilation du contenu.
 - Les images vont dans `assets/`, le logo est `assets/logo.svg`.
 
 Après modification, relancez le binaire pour recharger les contenus.

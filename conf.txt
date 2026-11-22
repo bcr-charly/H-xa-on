@@ -8,11 +8,11 @@ serveur
 
 # Section optionnelle : palette par défaut livrée (thème sombre à accents dorés).
 palette
-  fond          = #101010
-  elevation     = #1E1E1E
-  clair         = #E9C46A
-  accent        = #C6A664
-  bordure       = #8A6D2F
+  fond          = #0B0A07
+  elevation     = #1F1A0C
+  clair         = #FFC61A
+  accent        = #E8A400
+  bordure       = #8C6400
 
 # Pages actives. Une page activée mais non embarquée dans le binaire produit
 # un avertissement au démarrage et est ignorée, jamais un plantage.

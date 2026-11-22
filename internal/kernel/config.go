@@ -29,11 +29,11 @@ type Palette struct {
 
 func PaletteDefaut() Palette {
 	return Palette{
-		Fond:      "#101010",
-		Elevation: "#1E1E1E",
-		Clair:     "#E9C46A",
-		Accent:    "#C6A664",
-		Bordure:   "#8A6D2F",
+		Fond:      "#0B0A07",
+		Elevation: "#1F1A0C",
+		Clair:     "#FFC61A",
+		Accent:    "#E8A400",
+		Bordure:   "#8C6400",
 	}
 }
 
