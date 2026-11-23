@@ -51,11 +51,10 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 	contenu := template.HTML(fmt.Sprintf(`
 <section class="accueil-hero">
 	<div class="accueil-contenu">
-		<img class="logo-grand" src="/assets/logo.png" alt="%s">
+		<img class="logo-grand" src="/assets/logo.png?v=2026-11-b" alt="%s">
 		<p class="accueil-slogan">%s</p>
 		<div class="accueil-boutons">
-			<a class="bouton" href="/equipe">%s</a>
-			<a class="bouton bouton-borde" href="/actus">%s</a>
+			<a class="bouton" href="/actus">%s</a>
 			%s
 		</div>
 	</div>
@@ -63,7 +62,14 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 
 <section class="accueil-section" id="association">
 	<h2>%s</h2>
-	<p class="accueil-texte">%s</p>
+	<div class="association-grille">
+		<div class="association-photo"><span>%s</span></div>
+		<div class="association-texte">
+			<p>%s</p>
+			<p>%s</p>
+			<a class="bouton" href="/equipe">%s</a>
+		</div>
+	</div>
 	<div class="stats-grille">
 		<div class="stat"><div class="stat-chiffre">%d</div><div class="stat-libelle">%s</div></div>
 		<div class="stat"><div class="stat-chiffre">%d</div><div class="stat-libelle">%s</div></div>
@@ -84,11 +90,13 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 </section>`,
 		template.HTMLEscapeString(p.Noyau.Config.Nom),
 		template.HTMLEscapeString(t(locale, "accueil.slogan")),
-		template.HTMLEscapeString(t(locale, "accueil.presentation.bouton")),
 		template.HTMLEscapeString(t(locale, "accueil.bouton.actus")),
 		boutonCompte,
 		template.HTMLEscapeString(t(locale, "accueil.association.titre")),
-		template.HTMLEscapeString(t(locale, "accueil.association.texte")),
+		template.HTMLEscapeString(t(locale, "accueil.association.photo")),
+		fmt.Sprintf(template.HTMLEscapeString(t(locale, "accueil.association.p1")), membres),
+		template.HTMLEscapeString(t(locale, "accueil.association.p2")),
+		template.HTMLEscapeString(t(locale, "accueil.presentation.bouton")),
 		membres, template.HTMLEscapeString(t(locale, "accueil.stats.membres")),
 		actus, template.HTMLEscapeString(t(locale, "accueil.stats.actus")),
 		template.HTMLEscapeString(t(locale, "accueil.stats.benevoles")),

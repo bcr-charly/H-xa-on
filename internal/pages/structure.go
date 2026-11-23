@@ -189,6 +189,31 @@ main { flex: 1; }
 }
 .accueil-section-alt { background: var(--elevation); }
 .accueil-texte { max-width: 46rem; line-height: 1.65; color: var(--texte-sombre); }
+.association-grille {
+	display: grid;
+	grid-template-columns: 1fr 1.2fr;
+	gap: 2.5rem;
+	align-items: center;
+	width: 100%;
+	max-width: 56rem;
+	text-align: left;
+}
+.association-photo {
+	aspect-ratio: 4 / 3;
+	border-radius: 18px;
+	border: 2px dashed var(--bordure);
+	background:
+		linear-gradient(135deg, rgba(255, 122, 0, 0.10), rgba(255, 165, 0, 0.05)),
+		var(--elevation);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+.association-photo span { color: var(--accent); font-size: 0.95rem; }
+.association-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.association-texte { display: flex; flex-direction: column; gap: 1.1rem; align-items: flex-start; }
+.association-texte p { line-height: 1.65; color: var(--texte-sombre); }
 .stats-grille {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
@@ -350,6 +375,8 @@ régulières). */
 	text-align: center;
 }
 @media (max-width: 48rem) {
+	.association-grille { grid-template-columns: 1fr; text-align: center; }
+	.association-texte { align-items: center; }
 	.stats-grille { grid-template-columns: 1fr 1fr; }
 	.logo-grand { height: 13rem; }
 	.accueil-slogan { font-size: 1.05rem; }
@@ -522,7 +549,7 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 // à l'accueil.
 func logoPermanent(nomSite string) template.HTML {
 	return template.HTML(`<a class="logo-flottant" href="/" aria-label="Accueil">` +
-		`<img class="logo-petit" src="/assets/logo.png" alt="` + template.HTMLEscapeString(nomSite) + `"></a>`)
+		`<img class="logo-petit" src="/assets/logo.png?v=2026-11-b" alt="` + template.HTMLEscapeString(nomSite) + `"></a>`)
 }
 
 // pied rend le pied de page : identité du BDS, réseaux sociaux, liens
