@@ -8,41 +8,96 @@ import (
 	"github.com/bcr-charly/H-xa-on/internal/kernel"
 )
 
-// PageAccueil est la page d'accueil, ramenée à sa base : logo central,
-// slogan, bouton Connexion. Le Header (barre de navigation, onglet de
-// langue) et le logo permanent en haut à gauche sont rendus par la
-// structure commune.
+// PageAccueil reproduit l'agencement du site du BDS Télécom Paris,
+// avec l'identité visuelle de l'ENSIIE : hero plein écran sur le fond
+// photo, section « L'association » et ses compteurs, « Les compétitions »,
+// « Nos partenaires ». Le Header (barre de navigation, onglet de langue)
+// et le logo permanent en haut à gauche sont rendus par la structure
+// commune.
 type PageAccueil struct {
-	Noyau *kernel.Noyau
+	Noyau          *kernel.Noyau
+	DossierContenu string
 }
 
 func (p *PageAccueil) Nom() string       { return "accueil" }
 func (p *PageAccueil) Chemins() []string { return []string{"/accueil"} }
 
+// statSection compte les blocs d'une section d'un fichier de contenu.
+func (p *PageAccueil) statSection(fichier, section string) int {
+	blocs, err := kernel.ChargerContenus(p.DossierContenu + "/" + fichier)
+	if err != nil {
+		return 0
+	}
+	return len(kernel.FiltreSections(blocs, section))
+}
+
 func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 	locale := kernel.LocaleDepuisRequete(r)
 	connecte := p.Noyau.CompteCourant(r) != ""
+	t := kernel.Traduit
 
-	var bouton string
+	var boutonCompte string
 	if connecte {
-		bouton = fmt.Sprintf(`<a class="bouton" href="/deconnexion">%s</a>`,
-			template.HTMLEscapeString(kernel.Traduit(locale, "nav.deconnexion")))
+		boutonCompte = fmt.Sprintf(`<a class="bouton bouton-borde" href="/deconnexion">%s</a>`,
+			template.HTMLEscapeString(t(locale, "nav.deconnexion")))
 	} else {
-		bouton = fmt.Sprintf(`<a class="bouton" href="/connexion">%s</a>`,
-			template.HTMLEscapeString(kernel.Traduit(locale, "nav.connexion")))
+		boutonCompte = fmt.Sprintf(`<a class="bouton bouton-borde" href="/connexion">%s</a>`,
+			template.HTMLEscapeString(t(locale, "nav.connexion")))
 	}
+
+	membres := p.statSection("equipe.txt", "membre")
+	actus := p.statSection("actus.txt", "actu")
 
 	contenu := template.HTML(fmt.Sprintf(`
 <section class="accueil-hero">
 	<div class="accueil-contenu">
 		<img class="logo-grand" src="/assets/logo.png" alt="%s">
 		<p class="accueil-slogan">%s</p>
-		<div>%s</div>
+		<div class="accueil-boutons">
+			<a class="bouton" href="/equipe">%s</a>
+			<a class="bouton bouton-borde" href="/actus">%s</a>
+			%s
+		</div>
 	</div>
+</section>
+
+<section class="accueil-section" id="association">
+	<h2>%s</h2>
+	<p class="accueil-texte">%s</p>
+	<div class="stats-grille">
+		<div class="stat"><div class="stat-chiffre">%d</div><div class="stat-libelle">%s</div></div>
+		<div class="stat"><div class="stat-chiffre">%d</div><div class="stat-libelle">%s</div></div>
+		<div class="stat"><div class="stat-chiffre">100%%</div><div class="stat-libelle">%s</div></div>
+		<div class="stat"><div class="stat-chiffre">1</div><div class="stat-libelle">%s</div></div>
+	</div>
+</section>
+
+<section class="accueil-section accueil-section-alt" id="competitions">
+	<h2>%s</h2>
+	<p class="accueil-texte">%s</p>
+	<a class="bouton" href="/actus">%s</a>
+</section>
+
+<section class="accueil-section" id="partenaires">
+	<h2>%s</h2>
+	<p class="accueil-texte">%s</p>
 </section>`,
 		template.HTMLEscapeString(p.Noyau.Config.Nom),
-		template.HTMLEscapeString(kernel.Traduit(locale, "accueil.slogan")),
-		bouton,
+		template.HTMLEscapeString(t(locale, "accueil.slogan")),
+		template.HTMLEscapeString(t(locale, "accueil.presentation.bouton")),
+		template.HTMLEscapeString(t(locale, "accueil.bouton.actus")),
+		boutonCompte,
+		template.HTMLEscapeString(t(locale, "accueil.association.titre")),
+		template.HTMLEscapeString(t(locale, "accueil.association.texte")),
+		membres, template.HTMLEscapeString(t(locale, "accueil.stats.membres")),
+		actus, template.HTMLEscapeString(t(locale, "accueil.stats.actus")),
+		template.HTMLEscapeString(t(locale, "accueil.stats.benevoles")),
+		template.HTMLEscapeString(t(locale, "accueil.stats.objectif")),
+		template.HTMLEscapeString(t(locale, "accueil.competitions.titre")),
+		template.HTMLEscapeString(t(locale, "accueil.competitions.texte")),
+		template.HTMLEscapeString(t(locale, "accueil.competitions.bouton")),
+		template.HTMLEscapeString(t(locale, "accueil.sponsors.titre")),
+		template.HTMLEscapeString(t(locale, "accueil.sponsors.vide")),
 	))
 	p.Noyau.Rendu(w, http.StatusOK, page(p.Noyau, locale, p.Nom(), "", contenu, connecte), nil)
 }
