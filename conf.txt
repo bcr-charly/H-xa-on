@@ -22,7 +22,6 @@ pages
   competitions  = ON
   clubs         = ON
   actus         = ON
-  adhesion      = ON
   equipe        = ON
 
 # Secret de signature des cookies de session. À définir pour que les sessions

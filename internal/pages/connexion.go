@@ -97,13 +97,13 @@ func (p *PageConnexion) servirConnexion(w http.ResponseWriter, r *http.Request, 
 <label>%s<input type="password" name="motdepasse" autocomplete="current-password" required></label>
 %s
 <button type="submit" class="bouton">%s</button>
-<a class="lien" href="/connexion">%s</a>
+<a class="lien" href="/inscription">%s</a>
 </form></div>`,
 			template.HTMLEscapeString(kernel.Traduit(locale, "connexion.identifiant")),
 			template.HTMLEscapeString(kernel.Traduit(locale, "connexion.motdepasse")),
 			ligneErreur,
 			template.HTMLEscapeString(kernel.Traduit(locale, "connexion.bouton")),
-			template.HTMLEscapeString(kernel.Traduit(locale, "connexion.oublie")),
+			template.HTMLEscapeString(kernel.Traduit(locale, "connexion.pasencore")),
 		))
 	p.Noyau.Rendu(w, http.StatusOK, page(p.Noyau, locale, p.Nom(), kernel.Traduit(locale, "connexion.titre"), contenu, false), nil)
 }

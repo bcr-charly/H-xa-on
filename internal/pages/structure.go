@@ -3,6 +3,7 @@ package pages
 import (
 	"fmt"
 	"html/template"
+	"sort"
 	"strings"
 
 	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
@@ -60,11 +61,9 @@ main { flex: 1; }
 }
 
 /* ------------------------------------------------------------------ */
-/* Header : logo (déplacé vers le logo permanent), barre de navigation */
-/* Le site étant monolingue, l'onglet de langue a disparu.            */
-/* au survol du haut d'écran ou au glissement tactile.                 */
-/* Page d'accueil : fond transparent coupé au milieu de la largeur.     */
-/* Autres pages : fond blanc opaque.                                   */
+/* Header : nav, onglet de langue. Sur l'accueil il est transparent sur */
+/* le hero ; sur les pages internes il devient une barre pleine, de la */
+/* même taille dans les deux cas (plus de « header buggé »).           */
 /* ------------------------------------------------------------------ */
 .header {
 	position: fixed;
@@ -74,23 +73,29 @@ main { flex: 1; }
 	justify-content: center;
 	align-items: center;
 	gap: 1rem;
-	padding: 0.5rem 4rem;
-	transition: transform 0.25s ease, background-color 0.25s ease;
+	padding: 1rem 13rem 1rem 6rem;
+	transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 	color: var(--texte-sombre);
 	background: transparent;
+	border-bottom: 1px solid transparent;
+}
+.page-interne .header {
+	background: var(--elevation);
+	border-bottom-color: var(--bordure);
 }
 .header.cachee { transform: translateY(-100%); }
 .nav-barre {
 	display: flex;
-	gap: 0.25rem;
+	gap: 0.3rem;
 	list-style: none;
 	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 }
 .nav-onglet {
-	padding: 0.45rem 0.9rem;
+	padding: 0.6rem 1.15rem;
 	border-radius: 999px;
-	font-size: 1rem;
+	font-size: 1.15rem;
 	transition: transform 0.15s ease, background-color 0.15s ease;
 }
 .nav-onglet:hover, .nav-onglet:active {
@@ -102,6 +107,60 @@ main { flex: 1; }
 }
 .nav-onglet[aria-current="page"] { outline: 1px solid var(--clair); }
 .page-interne .nav-onglet[aria-current="page"] { outline-color: var(--accent); }
+
+/* ------------------------------------------------------------------ */
+/* Onglet de langue, tout à droite : pilule arrondie, menu au style    */
+/* de la palette (élévation, bordure braise, coins arrondis).          */
+/* ------------------------------------------------------------------ */
+.langue-zone {
+	position: absolute;
+	top: 0.6rem;
+	right: 1.2rem;
+}
+.langue-bouton {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.55rem 1.05rem;
+	border-radius: 999px;
+	border: 1px solid var(--bordure);
+	background: transparent;
+	color: inherit;
+	font-size: 1rem;
+	cursor: pointer;
+	transition: transform 0.15s ease, background-color 0.15s ease;
+}
+.langue-bouton:hover, .langue-bouton:active { transform: scale(1.05); background: var(--elevation); }
+.langue-menu {
+	position: absolute;
+	top: calc(100% + 0.5rem);
+	right: 0;
+	min-width: 10rem;
+	background: var(--elevation);
+	border: 1px solid var(--bordure);
+	border-radius: 14px;
+	padding: 0.4rem;
+	list-style: none;
+	box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+	z-index: 300;
+}
+.langue-menu li a, .langue-menu li span {
+	display: block;
+	padding: 0.5rem 0.8rem;
+	border-radius: 10px;
+	font-size: 0.95rem;
+	color: var(--texte-sombre);
+}
+.langue-menu li a:hover { background: var(--bordure); color: var(--texte-clair); }
+.langue-menu li span { color: var(--accent); }
+.langue-bloc[open] > summary { border-color: var(--clair); }
+.langue-bloc summary::-webkit-details-marker { display: none; }
+.langue-bloc summary { list-style: none; }
+
+@media (max-width: 48rem) {
+	.header { padding: 0.7rem 4.5rem 0.7rem 4.5rem; }
+	.nav-onglet { padding: 0.5rem 0.8rem; font-size: 1rem; }
+}
 
 .accueil-hero {
 	min-height: 100vh;
@@ -489,22 +548,16 @@ func iconeSVG(nom string) template.HTML {
 // déclose selon l'état de session. Le site est monolingue : pas d'onglet
 
 func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTML {
-	ordre := []string{"accueil", "sports", "competitions", "clubs", "actus", "adhesion", "equipe"}
+	ordrenav := []string{"sports", "competitions", "clubs", "equipe"}
 	cles := map[string]string{
-		"accueil":      "nav.accueil",
 		"sports":       "nav.sports",
 		"competitions": "nav.competitions",
 		"clubs":        "nav.clubs",
-		"actus":        "nav.actus",
-		"adhesion":     "nav.adhesion",
 		"equipe":       "nav.equipe",
 	}
 	var onglets strings.Builder
-	for _, nom := range ordre {
+	for _, nom := range ordrenav {
 		if active, ok := n.Config.Pages[nom]; !ok || !active {
-			continue
-		}
-		if nom == "accueil" {
 			continue
 		}
 		courantAttr := ""
@@ -523,9 +576,29 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 			template.HTMLEscapeString(kernel.Traduit(locale, "nav.deconnexion")))
 	}
 
+	locales := kernel.LocalesDisponibles()
+	sort.Strings(locales)
+	var options strings.Builder
+	for _, l := range locales {
+		if l == locale {
+			fmt.Fprintf(&options, `<li><span aria-current="true">%s</span></li>`,
+				template.HTMLEscapeString(kernel.Traduit(locale, "langue.nom."+l)))
+			continue
+		}
+		fmt.Fprintf(&options, `<li><a href="/langue?vers=%s&amp;retour=%s">%s</a></li>`,
+			template.HTMLEscapeString(l),
+			template.HTMLEscapeString(cheminCourant(courant)),
+			template.HTMLEscapeString(kernel.Traduit(locale, "langue.nom."+l)))
+	}
+
 	sortie := strings.Join([]string{
 		`<header class="header" id="header">`,
 		`<nav aria-label="Navigation"><ul class="nav-barre">` + onglets.String() + `</ul></nav>`,
+		`<div class="langue-zone"><details class="langue-bloc">` +
+			`<summary class="langue-bouton" aria-label="` +
+			template.HTMLEscapeString(kernel.Traduit(locale, "nav.langue")) + `">🌐 ` +
+			template.HTMLEscapeString(locale) + `</summary>` +
+			`<ul class="langue-menu">` + options.String() + `</ul></details></div>`,
 		`</header>`,
 	}, "")
 	return template.HTML(sortie)
@@ -588,8 +661,6 @@ func pied(n *kernel.Noyau, locale string) template.HTML {
 		{"pied.sports", "/sports", n.Config.Pages["sports"]},
 		{"pied.competitions", "/competitions", n.Config.Pages["competitions"]},
 		{"pied.clubs", "/clubs", n.Config.Pages["clubs"]},
-		{"pied.actus", "/actus", n.Config.Pages["actus"]},
-		{"pied.adhesion", "/adhesion", n.Config.Pages["adhesion"]},
 		{"pied.equipe", "/equipe", n.Config.Pages["equipe"]},
 	}
 	for _, l := range liens {
@@ -646,7 +717,7 @@ func pied(n *kernel.Noyau, locale string) template.HTML {
 
 func cheminCourant(nom string) string {
 	switch nom {
-	case "actus", "equipe", "connexion", "sports", "competitions", "clubs", "adhesion":
+	case "actus", "equipe", "connexion", "inscription", "sports", "competitions", "clubs":
 		return "/" + nom
 	default:
 		return "/"

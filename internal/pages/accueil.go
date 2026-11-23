@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"sort"
 	"strings"
 
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/components"
 	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
@@ -40,16 +42,38 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 		<img class="logo-grand" src="/assets/logo.png?v=2026-11-b" alt="%s">
 		<h2 class="accueil-titre">%s</h2>
 		<div class="accueil-boutons">
-			<a class="bouton" href="/adhesion">%s</a>
+			<a class="bouton" href="/inscription">%s</a>
 			<a class="bouton bouton-borde" href="/sports">%s</a>
 		</div>
 	</div>
 </section>`,
 		template.HTMLEscapeString(p.Noyau.Config.Nom),
 		template.HTMLEscapeString(t(locale, "accueil.titre")),
-		template.HTMLEscapeString(t(locale, "nav.adhesion")),
+		template.HTMLEscapeString(t(locale, "nav.inscription")),
 		template.HTMLEscapeString(t(locale, "nav.sports")),
 	)
+
+	// Section annonces (actus) : affichée sur l'accueil, avant
+	// « L'association » ; elle sert notamment d'annonce quand une
+	// compétition démarre.
+	var annonces strings.Builder
+	if actus := p.blocs("actus.txt", "actu"); len(actus) > 0 {
+		sort.SliceStable(actus, func(i, j int) bool { return actus[i].Texte("date") > actus[j].Texte("date") })
+		var cartes strings.Builder
+		for _, a := range actus {
+			cartes.WriteString(string(components.Defaut.Carte(a.Texte("titre"), a.Texte("date"), a.Texte("texte"), a.Texte("image"))))
+		}
+		annonces.WriteString(fmt.Sprintf(`
+<section class="accueil-section" id="annonces">
+	<h2>%s</h2>
+	<p class="accueil-texte">%s</p>
+	<div class="colonne-actus">%s</div>
+</section>`,
+			template.HTMLEscapeString(t(locale, "accueil.actus.titre")),
+			template.HTMLEscapeString(t(locale, "accueil.actus.intro")),
+			cartes.String(),
+		))
+	}
 
 	// Section « L'association » : deux paragraphes + bouton vers l'équipe.
 	association := fmt.Sprintf(`
@@ -221,7 +245,7 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 		))
 	}
 
-	contenu := template.HTML(hero + association + stats.String() + competitions +
+	contenu := template.HTML(hero + annonces.String() + association + stats.String() + competitions +
 		evenements.String() + clubs.String() + partenaires.String())
 	p.Noyau.Rendu(w, http.StatusOK, page(p.Noyau, locale, p.Nom(), p.Noyau.Config.Nom, contenu, connecte), nil)
 }

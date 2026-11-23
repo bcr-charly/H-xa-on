@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"path/filepath"
 	"strconv"
+	"strings"
 )
 
 // Page décrit une page embarquée dans le binaire. Chaque module de page
@@ -60,9 +61,27 @@ func NouveauNoyau(cfg Config, dossierData string) (*Noyau, error) {
 	return n, nil
 }
 
-// finaliser enregistre les chemins du noyau lui-même :
-// la racine (page d'accueil si elle est embarquée, sinon 404).
+// finaliser enregistre les chemins du noyau lui-même : changement de
+// langue et racine (page d'accueil si elle est embarquée, sinon 404).
+
+// localeConnue vérifie qu'une locale est bien livrée par le binaire.
+func localeConnue(l string) bool {
+	_, ok := Traductions[l]
+	return ok
+}
 func (n *Noyau) finaliser() {
+	n.mux.HandleFunc("/langue", func(w http.ResponseWriter, r *http.Request) {
+		l := r.FormValue("vers")
+		if !localeConnue(l) {
+			l = "fr"
+		}
+		http.SetCookie(w, &http.Cookie{Name: "bds_ensiie_langue", Value: l, Path: "/", SameSite: http.SameSiteLaxMode})
+		retour := r.FormValue("retour")
+		if retour == "" || !strings.HasPrefix(retour, "/") {
+			retour = "/"
+		}
+		http.Redirect(w, r, retour, http.StatusSeeOther)
+	})
 	n.mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path != "/" {
 			http.NotFound(w, r)

@@ -6,6 +6,18 @@
 #   slug         — (optionnel) identifiant d'URL si le nom doit différer
 
 [compet]
+nom = ENSIIE-SPORT
+position = centre
+image = sport.svg
+description = ENSIIE-SPORT, la section e-sport du BDS : tournois internes,
+  parties en ligne entre élèves et représentation de l'école sur les
+  compétitions universitaires de jeux vidéo.
+
+# Champ optionnel par bloc : periode — période de l'année (ex. « Mars »),
+# affichée dans la carte de la page Compétitions. Compléter avec les dates
+# réelles du calendrier du BDS.
+
+[compet]
 nom = Coupe de l'X
 image = coupe-de-lx.png
 description = La Coupe de l'X est le tournoi sportif inter-écoles qui
@@ -24,15 +36,3 @@ image = ffsu.jpg
 description = Les compétitions FFSU (Fédération Française du Sport
   Universitaire) opposent les universités et écoles toute l'année,
   du départemental aux France universitaires.
-
-[compet]
-nom = ENSIIE-SPORT
-position = centre
-image = sport.svg
-description = ENSIIE-SPORT, la section e-sport du BDS : tournois internes,
-  parties en ligne entre élèves et représentation de l'école sur les
-  compétitions universitaires de jeux vidéo.
-
-# Champ optionnel par bloc : periode — période de l'année (ex. « Mars »),
-# affichée dans la carte de la page Compétitions. Compléter avec les dates
-# réelles du calendrier du BDS.

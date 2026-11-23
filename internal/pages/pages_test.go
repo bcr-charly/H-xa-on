@@ -76,8 +76,11 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, "fait vivre le sport") {
 		t.Error("titre de l'accueil absent")
 	}
-	if !strings.Contains(corps, "/adhesion") || !strings.Contains(corps, "/sports") {
-		t.Error("boutons Adhésion / Nos sports du hero attendus")
+	if !strings.Contains(corps, "/inscription") || !strings.Contains(corps, "/sports") {
+		t.Error("boutons Inscription / Nos sports du hero attendus")
+	}
+	if strings.Contains(corps, "/adhesion") {
+		t.Error("plus de page adhésion")
 	}
 	if !strings.Contains(corps, "/connexion") {
 		t.Error("bouton connexion absent")
@@ -91,8 +94,8 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, `body class="page-accueil"`) {
 		t.Error("la page d'accueil doit porter la classe page-accueil")
 	}
-	if strings.Contains(corps, `class="langue-bloc"`) {
-		t.Error("site monolingue : pas d'onglet de langue")
+	if !strings.Contains(corps, `class="langue-bloc"`) || !strings.Contains(corps, `class="langue-menu"`) {
+		t.Error("onglet de langue attendu sous forme de menu ouvrable")
 	}
 	if !strings.Contains(corps, `class="stats-grille"`) || !strings.Contains(corps, `id="association"`) {
 		t.Error("sections association et statistiques attendues sur l'accueil")
