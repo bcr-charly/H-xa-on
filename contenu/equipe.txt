@@ -6,7 +6,7 @@
 [membre]
 nom = Ethan
 role = Président
-photo = membre.svg
+photo = ethan.jpg
 rang = bureau
 
 [membre]
@@ -18,13 +18,13 @@ rang = bureau
 [membre]
 nom = Jodie
 role = Trésorière
-photo = membre.svg
+photo = jodie.jpg
 rang = bureau
 
 [membre]
 nom = Joseph
 role = Secrétaire général · chargé RE
-photo = membre.svg
+photo = joseph.jpg
 
 [membre]
 nom = Maxime P
@@ -34,12 +34,12 @@ photo = membre.svg
 [membre]
 nom = Esteban
 role = Respo compétition
-photo = membre.svg
+photo = esteban.jpg
 
 [membre]
 nom = Juliette
 role = Respo comm
-photo = membre.svg
+photo = juliette.jpg
 
 [membre]
 nom = Martha
@@ -54,7 +54,7 @@ photo = membre.svg
 [membre]
 nom = Julien
 role = Chargé com
-photo = membre.svg
+photo = julien.jpg
 
 [membre]
 nom = Baptiste
@@ -64,12 +64,12 @@ photo = membre.svg
 [membre]
 nom = Emma
 role = Chargée logi
-photo = membre.svg
+photo = emma.jpg
 
 [membre]
 nom = Loïc
 role = Chargé com
-photo = membre.svg
+photo = loic.jpg
 
 [membre]
 nom = Ludivine
