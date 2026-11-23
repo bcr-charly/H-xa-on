@@ -35,9 +35,9 @@ func (p *PageAccueil) Servir(w http.ResponseWriter, r *http.Request) {
 	contenu := template.HTML(fmt.Sprintf(`
 <section class="accueil-hero">
 	<div class="accueil-contenu">
-		<img class="logo-grand fondu" src="/assets/logo.png" alt="%s">
-		<p class="accueil-slogan fondu">%s</p>
-		<div class="fondu">%s</div>
+		<img class="logo-grand" src="/assets/logo.png" alt="%s">
+		<p class="accueil-slogan">%s</p>
+		<div>%s</div>
 	</div>
 </section>`,
 		template.HTMLEscapeString(p.Noyau.Config.Nom),

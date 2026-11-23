@@ -391,39 +391,6 @@ const script = `
 		}
 	});
 
-	/* Fondus du défilement : chaque élément .fondu de la page d'accueil
-	s'efface quand son centre approche le haut de l'écran (plus il est haut,
-	plus il est transparent) et apparaît en montant depuis le bas. */
-	var fondus = Array.prototype.slice.call(document.querySelectorAll(".page-accueil .fondu"));
-	if (fondus.length > 0) {
-		var zone = 0.38;
-		function appliquerFondus() {
-			var vh = window.innerHeight;
-			var bord = vh * zone;
-			fondus.forEach(function (el) {
-				var r = el.getBoundingClientRect();
-				var centre = r.top + r.height / 2;
-				var oHaut = (centre - r.height * 0.05) / bord;
-				var oBas = (vh - centre - r.height * 0.05) / bord;
-				var o = Math.min(oHaut, oBas);
-				if (o < 0) { o = 0; } else if (o > 1) { o = 1; }
-				el.style.opacity = o;
-				el.style.pointerEvents = o < 0.1 ? "none" : "";
-			});
-		}
-		var demande = false;
-		function planifier() {
-			if (demande) return;
-			demande = true;
-			window.requestAnimationFrame(function () {
-				demande = false;
-				appliquerFondus();
-			});
-		}
-		window.addEventListener("scroll", planifier, { passive: true });
-		window.addEventListener("resize", planifier);
-		planifier();
-	}
 })();
 `
 
