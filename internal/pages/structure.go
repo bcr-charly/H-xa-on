@@ -170,6 +170,44 @@ main { flex: 1; }
 .accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
 .logo-grand { height: 20rem; width: auto; }
 .accueil-slogan { font-size: 1.35rem; max-width: 40rem; color: var(--texte-sombre); }
+.accueil-boutons { display: flex; flex-wrap: wrap; gap: 0.9rem; justify-content: center; }
+
+/* Sections de la page d'accueil, sur le modèle du BDS Télécom Paris. */
+.accueil-section {
+	max-width: 62rem;
+	margin: 0 auto;
+	padding: 4.5rem 1.25rem;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.4rem;
+}
+.accueil-section h2 {
+	font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+	color: var(--clair);
+}
+.accueil-section-alt { background: var(--elevation); }
+.accueil-texte { max-width: 46rem; line-height: 1.65; color: var(--texte-sombre); }
+.stats-grille {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.4rem;
+	width: 100%;
+	max-width: 46rem;
+}
+.stat {
+	background: var(--elevation);
+	border: 1px solid var(--bordure);
+	border-radius: 14px;
+	padding: 1.6rem 0.8rem;
+	display: flex;
+	flex-direction: column;
+	gap: 0.4rem;
+}
+.accueil-section-alt .stat { background: var(--fond); }
+.stat-chiffre { font-size: 2.2rem; font-weight: 800; color: var(--accent); line-height: 1; }
+.stat-libelle { font-size: 0.95rem; color: var(--texte-sombre); }
 
 .or-metal {
 	background: linear-gradient(135deg,
@@ -312,6 +350,7 @@ régulières). */
 	text-align: center;
 }
 @media (max-width: 48rem) {
+	.stats-grille { grid-template-columns: 1fr 1fr; }
 	.logo-grand { height: 13rem; }
 	.accueil-slogan { font-size: 1.05rem; }
 	.header { padding: 0.5rem 3.5rem 0.5rem 4.5rem; }
@@ -391,39 +430,6 @@ const script = `
 		}
 	});
 
-	/* Fondus du défilement : chaque élément .fondu de la page d'accueil
-	s'efface quand son centre approche le haut de l'écran (plus il est haut,
-	plus il est transparent) et apparaît en montant depuis le bas. */
-	var fondus = Array.prototype.slice.call(document.querySelectorAll(".page-accueil .fondu"));
-	if (fondus.length > 0) {
-		var zone = 0.38;
-		function appliquerFondus() {
-			var vh = window.innerHeight;
-			var bord = vh * zone;
-			fondus.forEach(function (el) {
-				var r = el.getBoundingClientRect();
-				var centre = r.top + r.height / 2;
-				var oHaut = (centre - r.height * 0.05) / bord;
-				var oBas = (vh - centre - r.height * 0.05) / bord;
-				var o = Math.min(oHaut, oBas);
-				if (o < 0) { o = 0; } else if (o > 1) { o = 1; }
-				el.style.opacity = o;
-				el.style.pointerEvents = o < 0.1 ? "none" : "";
-			});
-		}
-		var demande = false;
-		function planifier() {
-			if (demande) return;
-			demande = true;
-			window.requestAnimationFrame(function () {
-				demande = false;
-				appliquerFondus();
-			});
-		}
-		window.addEventListener("scroll", planifier, { passive: true });
-		window.addEventListener("resize", planifier);
-		planifier();
-	}
 })();
 `
 

@@ -9,7 +9,7 @@ import (
 // programme enregistre les pages disponibles.
 func Toutes(n *kernel.Noyau, dossierContenu string) []kernel.Page {
 	return []kernel.Page{
-		&PageAccueil{Noyau: n},
+		&PageAccueil{Noyau: n, DossierContenu: dossierContenu},
 		&PageActus{Noyau: n, DossierContenu: dossierContenu},
 		&PageEquipe{Noyau: n, DossierContenu: dossierContenu},
 		&PageConnexion{Noyau: n},
