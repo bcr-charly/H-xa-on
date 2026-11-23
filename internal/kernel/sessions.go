@@ -16,7 +16,7 @@ import (
 )
 
 const (
-	NomCookieSession = "hexaion_session"
+	NomCookieSession = "bds_ensiie_session"
 	DureeSession     = 12 * time.Hour
 )
 

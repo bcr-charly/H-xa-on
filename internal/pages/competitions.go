@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/bcr-charly/H-xa-on/internal/components"
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/components"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 // PageCompetitions est la page « Compétitions » : les grands rendez-vous

@@ -7,8 +7,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/bcr-charly/H-xa-on/internal/components"
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/components"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 // PageActus affiche les actualités lues dans contenu/actus.txt :

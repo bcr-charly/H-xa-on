@@ -6,7 +6,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 // PageAccueil reproduit l'agencement du site du BDS Télécom Paris avec

@@ -1,3 +1,3 @@
-module github.com/bcr-charly/H-xa-on
+module github.com/bcr-charly/siteweb-bds-ensiie
 
 go 1.24

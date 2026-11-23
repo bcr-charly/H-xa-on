@@ -5,7 +5,7 @@ import (
 	"html/template"
 	"strings"
 
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 // style contient tout l'habillage du site. Aucune ressource distante :

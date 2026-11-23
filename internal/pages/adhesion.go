@@ -6,8 +6,8 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/bcr-charly/H-xa-on/internal/components"
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/components"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 // PageAdhesion est la page « L'adhésion » : pourquoi devenir membre, ce

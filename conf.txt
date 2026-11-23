@@ -1,4 +1,4 @@
-# Configuration de l'instance Héxaïon.
+# Configuration de l'instance Site-Web-BDS-ENSIIE.
 # Modifier ce fichier puis relancer le binaire : aucune recompilation.
 # Toute clé inconnue est signalée au démarrage sans être fatale.
 

@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 func noyauTest(t *testing.T, racine string) (*kernel.Noyau, *httptest.Server) {

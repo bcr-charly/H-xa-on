@@ -1,7 +1,7 @@
 package pages
 
 import (
-	"github.com/bcr-charly/H-xa-on/internal/kernel"
+	"github.com/bcr-charly/siteweb-bds-ensiie/internal/kernel"
 )
 
 // Toutes construit la liste des pages embarquées. Le noyau ne connaît

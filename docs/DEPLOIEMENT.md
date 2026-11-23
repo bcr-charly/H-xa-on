@@ -32,23 +32,23 @@ bds.mon-ecole.fr {
 
 ## Service systemd
 
-`/etc/systemd/system/hexaion.service` :
+`/etc/systemd/system/siteweb-bds-ensiie.service` :
 
 ```ini
 [Unit]
-Description=Site Héxaïon
+Description=Site web du BDS ENSIIE
 After=network.target
 
 [Service]
-WorkingDirectory=/opt/hexaion
-ExecStart=/opt/hexaion/hexaion -dossier /opt/hexaion
+WorkingDirectory=/opt/siteweb-bds-ensiie
+ExecStart=/opt/siteweb-bds-ensiie/siteweb-bds-ensiie -dossier /opt/siteweb-bds-ensiie
 Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target
 ```
 
-Puis : `systemctl enable --now hexaion`.
+Puis : `systemctl enable --now siteweb-bds-ensiie`.
 
 ## Docker (optionnel)
 
@@ -56,9 +56,9 @@ Une image minimale contenant le dossier de déploiement ; le conteneur
 n'expose que le port configuré :
 
 ```sh
-docker build -t hexaion .
+docker build -t siteweb-bds-ensiie .
 docker run -d -p 8080:8080 \
-  -v $(pwd)/data:/app/data -v $(pwd)/contenu:/app/contenu hexaion
+  -v $(pwd)/data:/app/data -v $(pwd)/contenu:/app/contenu siteweb-bds-ensiie
 ```
 
 Le `Dockerfile` est fourni à la racine du projet.
@@ -69,13 +69,13 @@ Publier une variante Raspberry Pi ne demande qu'une cible de build
 supplémentaire :
 
 ```sh
-GOOS=linux GOARCH=arm64 go build -o hexaion-arm64 ./cmd/hexaion
+GOOS=linux GOARCH=arm64 go build -o siteweb-bds-ensiie-arm64 ./cmd/siteweb-bds-ensiie
 ```
 
 ## Build reproduit
 
 ```sh
-CGO_ENABLED=0 go build -ldflags "-s -w" -o hexaion ./cmd/hexaion
+CGO_ENABLED=0 go build -ldflags "-s -w" -o siteweb-bds-ensiie ./cmd/siteweb-bds-ensiie
 ```
 
 `CGO_ENABLED=0` garantit un binaire statique, sans runtime ni dépendance à

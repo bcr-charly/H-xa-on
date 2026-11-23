@@ -1,4 +1,4 @@
-# Héxaïon
+# Site-Web-BDS-ENSIIE
 
 Site web en poche : un serveur web complet, autonome et personnalisable,
 distribué sous licence libre pour le BDS de l'ENSIIE et pour toute association
@@ -14,12 +14,19 @@ distribué sous licence libre pour le BDS de l'ENSIIE et pour toute association
 Un binaire Go unique, un dossier copiable, aucune dépendance à installer :
 
 ```
-hexaion/
-├── hexaion            # binaire unique compilé
+siteweb-bds-ensiie/
+├── siteweb-bds-ensiie            # binaire unique compilé
 ├── conf.txt           # configuration de l'instance
 ├── contenu/           # données éditables sans recompilation
 │   ├── actus.txt
-│   └── equipe.txt
+│   ├── adhesion.txt
+│   ├── clubs.txt
+│   ├── competitions.txt
+│   ├── equipe.txt
+│   ├── evenements.txt
+│   ├── partenaires.txt
+│   ├── sports.txt
+│   └── statistiques.txt
 ├── assets/            # logo du BDS
 └── data/              # données persistantes (comptes, sessions)
 ```
@@ -33,16 +40,16 @@ hexaion/
 ## Déploiement rapide
 
 ```sh
-go build -o hexaion ./cmd/hexaion
-./hexaion -creer-admin login:motdepasse   # une fois, crée le compte admin
-./hexaion                                 # sert HTTP sur le port configuré
+go build -o siteweb-bds-ensiie ./cmd/siteweb-bds-ensiie
+./siteweb-bds-ensiie -creer-admin login:motdepasse   # une fois, crée le compte admin
+./siteweb-bds-ensiie                                 # sert HTTP sur le port configuré
 ```
 
 Cross-compilation vers une autre architecture, en une variable
 d'environnement :
 
 ```sh
-GOOS=linux GOARCH=arm64 go build -o hexaion-arm64 ./cmd/hexaion
+GOOS=linux GOARCH=arm64 go build -o siteweb-bds-ensiie-arm64 ./cmd/siteweb-bds-ensiie
 ```
 
 La notice complète, orientée bureau des sports, est dans
@@ -52,7 +59,7 @@ reverse proxy (nginx/Caddy), le service systemd et Docker sont documentés dans
 
 ## Architecture
 
-- `cmd/hexaion` : point d'entrée, lecture de `conf.txt`, création du compte
+- `cmd/siteweb-bds-ensiie` : point d'entrée, lecture de `conf.txt`, création du compte
   administrateur initial.
 - `internal/kernel` : noyau — serveur HTTP, routage, configuration, contenus,
   stockage (fichiers plats à réécriture atomique et export CSV), sessions

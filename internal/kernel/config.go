@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-// Config est la configuration complète d'une instance Héxaïon,
+// Config est la configuration complète d'une instance Site-Web-BDS-ENSIIE,
 // lue depuis conf.txt au démarrage.
 type Config struct {
 	Port    int
@@ -55,7 +55,7 @@ func (a Avertissement) String() string {
 func ParseConfig(contenu string) (Config, []Avertissement) {
 	cfg := Config{
 		Port:    8080,
-		Nom:     "Héxaïon",
+		Nom:     "BDS ENSIIE",
 		Palette: PaletteDefaut(),
 		Pages:   map[string]bool{},
 		Secret:  "",
