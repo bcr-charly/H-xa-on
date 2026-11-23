@@ -6,13 +6,13 @@ serveur
   port = 8080
   nom  = BDS ENSIIE
 
-# Section optionnelle : palette par défaut livrée (thème sombre à accents dorés).
+# Section optionnelle : palette par défaut livrée (thème sombre à accents orangés).
 palette
-  fond          = #0A0602
-  elevation     = #1D1305
-  clair         = #FFB400
-  accent        = #E09600
-  bordure       = #6E4A00
+  fond          = #0B0705
+  elevation     = #211207
+  clair         = #FFA500
+  accent        = #FF7A00
+  bordure       = #8C4400
 
 # Pages actives. Une page activée mais non embarquée dans le binaire produit
 # un avertissement au démarrage et est ignorée, jamais un plantage.

@@ -162,6 +162,10 @@ main { flex: 1; }
 	justify-content: center;
 	text-align: center;
 	padding: 5rem 1rem 2.5rem;
+	background-image: linear-gradient(rgba(11, 7, 5, 0.55), rgba(11, 7, 5, 0.75)), url("/assets/fond-accueil.jpg");
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 .accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
 .logo-grand { height: 20rem; width: auto; }
