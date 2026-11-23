@@ -3,7 +3,7 @@
 ## 1. Ce dont vous avez besoin
 
 Un ordinateur (ou un Raspberry Pi, ou un serveur de l'école) et le dossier
-`hexaion/` copié tel quel. Rien d'autre : pas de base de données, pas de
+`siteweb-bds-ensiie/` copié tel quel. Rien d'autre : pas de base de données, pas de
 service externe, pas de compétence d'administration.
 
 ## 2. Premiers réglages (2 minutes)
@@ -38,7 +38,7 @@ Après modification, relancez le binaire pour recharger les contenus.
 Une seule fois, en ligne de commande :
 
 ```sh
-./hexaion -creer-admin login:motdepasse
+./siteweb-bds-ensiie -creer-admin login:motdepasse
 ```
 
 Cela crée le compte administrateur dans `data/comptes.json`. Ensuite, la
@@ -58,7 +58,7 @@ noyau (`PurgeAnnuelle`), à déclencher à la prise en main de la nouvelle
 ## 5. Lancer le site
 
 ```sh
-./hexaion
+./siteweb-bds-ensiie
 ```
 
 Le site répond sur `http://localhost:8080` (ou le port configuré). Pour un

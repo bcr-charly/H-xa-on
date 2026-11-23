@@ -221,10 +221,10 @@ func TestTraductions(t *testing.T) {
 	if Traduit("fr", "nav.connexion") != "Connexion" {
 		t.Error("traduction fr")
 	}
-	if Traduit("en", "nav.connexion") != "Log in" {
-		t.Error("traduction en")
+	if Traduit("fr", "nav.sports") != "Nos sports" {
+		t.Error("traduction fr sports")
 	}
-	if Traduit("xx", "nav.actus") != "Actus" {
+	if Traduit("xx", "nav.connexion") != "Connexion" {
 		t.Error("locale inconnue doit retomber sur fr")
 	}
 	if Traduit("fr", "cle.inexistante") != "cle.inexistante" {

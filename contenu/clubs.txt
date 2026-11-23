@@ -1,0 +1,16 @@
+# Clubs et associations étudiantes soutenus financièrement par le BDS.
+# Un bloc [club] par club, affiché dans la section « Les clubs » de
+# l'accueil et sur la page /clubs :
+#   nom          — titre du club
+#   description  — quelques lignes de description (multi-lignes en indentant)
+# Tant qu'aucun bloc n'est renseigné, la section se masque sur l'accueil
+# et la page affiche un message d'attente. Ne pas inventer : renseigner les
+# clubs réellement soutenus par le BDS de l'ENSIIE.
+#
+# Exemple :
+#
+# [club]
+# nom = ENSIIE-SPORT
+# description = La section e-sport du BDS : tournois internes, parties en
+#   ligne entre élèves et représentation de l'école sur les compétitions
+#   universitaires de jeux vidéo.

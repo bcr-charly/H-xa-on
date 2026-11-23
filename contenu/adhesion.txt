@@ -1,0 +1,22 @@
+# Page « L'adhésion ». Champs du bloc [adhesion] :
+#   pourquoi      — section « Pourquoi devenir membre ? » (multi-lignes)
+#   comprend      — liste à puces de « Ton adhésion comprend » : une puce
+#                   par ligne indentée commençant par "- "
+#   comment       — section « Comment adhérer » : mode d'emploi réel du BDS
+#                   (multi-lignes). Indiquer le site de paiement de
+#                   l'association ou le bureau.
+#   lien          — lien externe du bouton d'adhésion (site de paiement,
+#                   optionnel : bouton masqué si vide)
+# Modifier ce fichier puis relancer le binaire suffit.
+
+[adhesion]
+pourquoi = Devenir membre du BDS, c'est l'accès illimité à toutes les
+  séances sportives hebdomadaires organisées par le BDS, encadrées par
+  des responsables qui guident la pratique, quel que soit ton niveau.
+comprend =
+  - Accès illimité à toutes les séances hebdomadaires
+  - Tarifs réduits sur les produits et services du BDS
+  - Avantages réservés chez nos partenaires
+comment = Le mode d'emploi d'adhésion est à compléter par le BDS :
+  en ligne via le site de paiement de l'association, ou au bureau.
+lien =

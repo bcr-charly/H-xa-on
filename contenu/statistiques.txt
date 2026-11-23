@@ -1,0 +1,14 @@
+# Statistiques du bandeau d'accueil (quatre compteurs : valeur + libellé).
+# Un bloc [statistiques] avec quatre clés :
+#   membres   — membres du BDS (par défaut : nombre de [membre] de equipe.txt)
+#   sports    — sports proposés (par défaut : nombre de [sport] de sports.txt)
+#   seances   — séances hebdomadaires (valeur réelle fournie par le BDS)
+#   adherents — adhérents (valeur réelle fournie par le BDS)
+# Une clé absente ou vide masque le compteur correspondant : rien n'est
+# inventé, chaque valeur provient de ce fichier ou des contenus réels.
+
+[statistiques]
+membres =
+sports =
+seances =
+adherents =

@@ -1,4 +1,4 @@
-# Configuration de l'instance Héxaïon.
+# Configuration de l'instance Site-Web-BDS-ENSIIE.
 # Modifier ce fichier puis relancer le binaire : aucune recompilation.
 # Toute clé inconnue est signalée au démarrage sans être fatale.
 
@@ -18,12 +18,12 @@ palette
 # un avertissement au démarrage et est ignorée, jamais un plantage.
 pages
   accueil       = ON
+  sports        = ON
+  competitions  = ON
+  clubs         = ON
   actus         = ON
+  adhesion      = ON
   equipe        = ON
-  planning      = OFF
-  competition   = OFF
-  sport         = OFF
-  boutique      = OFF
 
 # Secret de signature des cookies de session. À définir pour que les sessions
 # survivent à un redémarrage ; sans lui, un secret éphémère est généré.
