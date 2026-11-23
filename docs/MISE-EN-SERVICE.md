@@ -29,25 +29,7 @@ Sauvegardez, relancez le binaire. C'est tout.
   `rang = bureau` pour les trois premiers postes (président, VP, trésorier),
   affichés dans la rangée d'honneur. Les autres membres se rangent en
   grille symétrique, centrée, sans recompilation du contenu.
-- La sous-page présentation de l'accueil vit dans
-  `contenu/accueil.txt` : `texte` (multi-lignes en indentant),
-  `president` (légende sous la bulle), `photo` (fichier dans `assets/`).
-- Les sports affichés dans la sous-page « Sports » vivent dans
-  `contenu/sports.txt` : un bloc `[sport]` par sport avec `nom` et `image`.
-  Cliquer sur une case ouvre la page dédiée du sport (`/sport/<nom>`),
-  alimentée par les mêmes champs : `presentation` (multi-lignes),
-  `competitions` (une par ligne indentée), `respo` et `contact`,
-  `photo`/`photo2`, `horaires` (affichés à gauche) et `lieu` (à droite) ;
-  le bouton « S'inscrire au ... » mène à l'onglet inscription.
-- Les sponsors affichés dans la dernière sous-page de l'accueil vivent
-  dans `contenu/sponsors.txt` : un bloc `[sponsor]` par carte avec `nom`
-  et `image` ; sans bloc, un message d'attente s'affiche.
-- Les compétitions affichées sur l'accueil vivent dans
-  `contenu/competitions.txt` : un bloc `[compet]` par compétition avec
-  `nom`, `image`, `description` (page dédiée `/competition/<nom>`),
-  `slug` optionnel. La bulle « s'inscrire » mène à la page
-  `/inscriptions`.
-- Les images vont dans `assets/`, le logo est `assets/logo.png` (fond transparent).
+- Les images vont dans `assets/`, le logo est `assets/logo.png` .
 
 Après modification, relancez le binaire pour recharger les contenus.
 

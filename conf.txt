@@ -21,8 +21,8 @@ pages
   actus         = ON
   equipe        = ON
   planning      = OFF
-  competition   = ON
-  sport         = ON
+  competition   = OFF
+  sport         = OFF
   boutique      = OFF
 
 # Secret de signature des cookies de session. À définir pour que les sessions
