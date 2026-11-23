@@ -7,7 +7,6 @@ titre = Ouverture des inscriptions au week-end d'intégration
 date = 2026-09-14
 texte = Les inscriptions au week-end d'intégration sont ouvertes.
   Places limitées : premier arrivé, premier servi.
-image = assets/equipe.svg
 
 [actu]
 titre = Résultats de la coupe ENSIIE

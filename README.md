@@ -20,7 +20,7 @@ hexaion/
 ├── contenu/           # données éditables sans recompilation
 │   ├── actus.txt
 │   └── equipe.txt
-├── assets/            # logo, photos, images des pages
+├── assets/            # logo du BDS
 └── data/              # données persistantes (comptes, sessions)
 ```
 

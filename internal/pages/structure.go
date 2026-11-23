@@ -154,170 +154,39 @@ main { flex: 1; }
 .langue-bloc summary::-webkit-details-marker { display: none; }
 .langue-bloc summary { list-style: none; }
 
-/* Page d'accueil : une grande page qui défile comme un assemblage de
-sous-pages. Le fond photo reste fixe ; seul le contenu monte et disparaît. */
-.fond-fixe { position: fixed; inset: 0; z-index: -1; overflow: hidden; }
-.accueil-fond {
-	position: absolute;
-	inset: 0;
-	background-size: cover;
-	background-position: center;
-	filter: brightness(0.48) saturate(0.8);
-}
-.accueil-voile {
-	position: absolute;
-	inset: 0;
-	background: var(--fond);
-	opacity: 0.42;
-}
-.accueil-section {
-	min-height: 76vh;
+.accueil-hero {
+	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	gap: 1rem;
-	position: relative;
-	padding: 3.5rem 1rem 1.2rem;
 	text-align: center;
+	padding: 5rem 1rem 2.5rem;
 }
-.accueil-hero { min-height: 92vh; }
-.accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+.accueil-contenu { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 1.4rem; }
 .logo-grand { height: 20rem; width: auto; }
 .accueil-slogan { font-size: 1.35rem; max-width: 40rem; color: var(--texte-sombre); }
 
-/* Sous-page présentation : la zone de texte « Qui sommes-nous ? » est à
-gauche, au milieu en hauteur ; les bulles du logo et du président sont à
-droite, hors de la zone de texte, nom du président sous sa bulle. */
-.presentation-rangee {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	gap: 3rem;
-	width: 100%;
-	max-width: 62rem;
+.or-metal {
+	background: linear-gradient(135deg,
+		#F5D77A 0%, #F2B93B 18%, #C98A10 45%, #8F5E06 75%, #5C3D03 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 246, 210, .55);
 }
-.carte-presentation {
-	background: var(--elevation);
-	border: 1px solid var(--bordure);
-	border-radius: 24px;
-	padding: 2.4rem;
-	flex: 0 1 34rem;
-}
-.presentation-texte { text-align: left; }
-.presentation-texte h2 { color: var(--clair); margin-bottom: 1rem; font-size: 1.9rem; }
-.presentation-texte p { white-space: pre-line; line-height: 1.55; }
-.presentation-photos {
-	display: flex;
-	flex-direction: column;
-	gap: 1.6rem;
-	align-items: center;
-	flex: none;
-}
-.presentation-figure {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.55rem;
-	margin: 0;
-}
-.bulle {
-	width: 10.5rem;
-	height: 10.5rem;
-	border-radius: 50%;
-	background: var(--fond);
-	border: 2px solid var(--bordure);
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: none;
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-}
-.bulle img { width: 100%; height: 100%; object-fit: cover; }
-.bulle-legende { color: var(--clair); font-size: 0.9rem; font-weight: 600; }
-
-/* Sous-page compétitions : la barre « Compétitions » surgit du coin haut
-gauche et se centre en haut ; les bulles apparaissent ensuite. Quand on
-quitte la sous-page, la barre repart d'où elle est venue et les bulles
-disparaissent. */
-/* Fondus du défilement : chaque élément .fondu devient progressivement
-transparent quand il approche le haut de l'écran, et apparaît en arrivant
-du bas — plus il est haut, plus il est transparent ; le pilotage est fait
-par le script (fallback sans JS : opacité pleine). */
-.fondu { will-change: opacity; }
-.compet-barre {
-	position: absolute;
-	top: 8vh;
-	left: 50%;
-	transform: translateX(-50%);
-	background: var(--bordure);
-	color: var(--texte-sombre);
-	border: 1px solid var(--bordure);
-	border-radius: 999px;
-	padding: 0.65rem 2.4rem;
-	font-size: 1.3rem;
-	font-weight: 700;
-	z-index: 5;
-}
-.compet-grille {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
-}
-.compet-bulle { position: absolute; pointer-events: auto; }
-.compet-pos-haut-droite { top: 22vh; right: 9vw; }
-.compet-pos-bas-droite { bottom: 20vh; right: 22vw; }
-.compet-pos-bas-gauche { bottom: 20vh; left: 22vw; }
-.compet-pos-haut-gauche { top: 22vh; left: 9vw; }
-.compet-pos-centre { top: 26vh; left: 50%; transform: translateX(-50%); }
-.compet-cellule {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 0.8rem;
-	text-align: center;
-}
-.compet-ronde {
-	width: 16rem;
-	height: 16rem;
-	border-radius: 50%;
-	background: var(--elevation);
-	border: 2px solid var(--bordure);
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: none;
-	color: var(--clair);
-	box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
-	transition: transform 0.2s ease;
-}
-.compet-cellule:hover .compet-ronde,
-.compet-cellule:active .compet-ronde { transform: scale(1.08); }
-.compet-ronde img { width: 100%; height: 100%; object-fit: contain; padding: 9%; }
-.compet-nom { font-weight: 600; color: var(--texte-sombre); }
-.compet-inscrire .compet-ronde {
-	background: transparent;
-	border: 2px dashed var(--bordure);
-	color: var(--texte-sombre);
-	font-weight: 700;
-	font-size: 1.05rem;
-}
-.compet-inscrire:hover .compet-ronde { background: var(--bordure); color: var(--texte-sombre); }
 
 .bouton {
 	display: inline-block;
 	padding: 0.7rem 1.8rem;
 	border-radius: 999px;
-	background: var(--bordure);
-	color: var(--texte-sombre);
+	background: linear-gradient(135deg,
+		#F5D77A 0%, #F2B93B 18%, #C98A10 45%, #8F5E06 75%, #5C3D03 100%);
+	box-shadow: inset 0 1px 0 rgba(255, 246, 210, .55);
+	color: #241601;
 	border: 1px solid var(--bordure);
 	font-size: 1.05rem;
 	font-weight: 600;
-	transition: transform 0.15s ease, background-color 0.2s ease;
+	transition: transform 0.15s ease, filter 0.2s ease;
 }
-.bouton:hover { transform: scale(1.06); background: var(--accent); }
+.bouton:hover { transform: scale(1.06); filter: brightness(1.12); }
 .bouton:active { transform: scale(1.03); }
 .bouton-borde {
 	background: transparent;
@@ -345,6 +214,7 @@ par le script (fallback sans JS : opacité pleine). */
 .carte-corps { padding: 1.1rem 1.4rem; }
 .carte-date { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.3rem; }
 .carte p { white-space: pre-line; margin-top: 0.4rem; }
+
 
 /* Grille équipe : chaque rangée est centrée, la disposition reste
 symétrique quelle que soit l'effectif (rangée bureau puis rangées
@@ -396,95 +266,6 @@ régulières). */
 }
 .erreur { color: var(--clair); }
 
-/* Sous-page Sports : cases carrées à coins arrondis avec la photo du
-sport, nom du sport en dessous, même esprit que la grille équipe. */
-.sports-grille {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 1.6rem 1.4rem;
-	width: 100%;
-	height: min(52vh, 38rem);
-	grid-auto-rows: 1fr;
-	padding: 0 1.5vw;
-}
-.sport-case {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 0.9rem;
-	text-align: center;
-}
-.sport-carre {
-	width: 100%;
-	height: 100%;
-	aspect-ratio: auto;
-	border-radius: 18px;
-	background: var(--elevation);
-	border: 1px solid var(--bordure);
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: transform 0.2s ease;
-}
-.sport-case:hover .sport-carre, .sport-case:active .sport-carre { transform: scale(1.05); }
-.sport-carre img { width: 100%; height: 100%; object-fit: cover; }
-.sport-nom { font-weight: 600; color: var(--texte-sombre); }
-.accueil-section.sports { padding-bottom: 6rem; }
-
-/* Page dédiée d'un sport : présentation du sport au BDS, compétitions
-possibles, respo et contacts, photos, horaires (gauche) et lieu
-(droite), bouton « S'inscrire au ... ». */
-.sport-detail { max-width: 56rem; margin: 0 auto; display: flex; flex-direction: column; gap: 1.4rem; }
-.sport-detail h1 { color: var(--clair); font-size: clamp(1.8rem, 4vw, 2.6rem); text-align: center; }
-.sport-detail-intro { background: var(--elevation); border: 1px solid var(--bordure); border-radius: 18px; padding: 1.4rem 1.6rem; white-space: pre-line; line-height: 1.55; }
-.sport-detail-bloc { background: var(--elevation); border: 1px solid var(--bordure); border-radius: 18px; padding: 1.2rem 1.6rem; }
-.sport-detail-bloc h2 { color: var(--accent); font-size: 1.15rem; margin-bottom: 0.6rem; }
-.sport-detail-bloc ul { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
-.sport-detail-bloc p { white-space: pre-line; line-height: 1.5; }
-.sport-horaires-lieu { display: flex; gap: 1.4rem; flex-wrap: wrap; }
-.sport-horaires-lieu > div { flex: 1 1 14rem; background: var(--elevation); border: 1px solid var(--bordure); border-radius: 18px; padding: 1.2rem 1.6rem; }
-.sport-horaires-lieu h2 { color: var(--accent); font-size: 1.15rem; margin-bottom: 0.6rem; }
-.sport-photos { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
-.sport-photos img { height: 11rem; width: auto; max-width: 100%; border-radius: 14px; border: 1px solid var(--bordure); object-fit: cover; }
-.sport-inscrire { text-align: center; margin-top: 0.6rem; }
-
-/* Sous-page sponsors : cartes rectangulaires à coins arrondis, nom en
-dessous ; l'espace attend les logos des partenaires du BDS. */
-.sponsors-grille {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
-	gap: 2rem 1.4rem;
-	width: 100%;
-	height: min(30vh, 22rem);
-	padding: 0 1.5vw;
-}
-.sponsor-case {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	gap: 0.8rem;
-	text-align: center;
-}
-.sponsor-carre {
-	width: 100%;
-	height: 100%;
-	border-radius: 18px;
-	background: var(--elevation);
-	border: 1px solid var(--bordure);
-	overflow: hidden;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	transition: transform 0.2s ease;
-}
-.sponsor-case:hover .sponsor-carre { transform: scale(1.04); }
-.sponsor-carre img { width: 100%; height: 100%; object-fit: contain; padding: 8%; }
-.sponsor-nom { font-weight: 600; color: var(--texte-sombre); }
-.sponsor-vide { max-width: 40rem; color: var(--texte-sombre); }
-
 /* ------------------------------------------------------------------ */
 /* Pied de page : identité, réseaux, liens rapides, informations,      */
 /* contact — sur chaque page.                                          */
@@ -531,23 +312,7 @@ dessous ; l'espace attend les logos des partenaires du BDS. */
 	.accueil-slogan { font-size: 1.05rem; }
 	.header { padding: 0.5rem 3.5rem 0.5rem 4.5rem; }
 	.langue-zone { right: 1rem; }
-	.presentation-rangee { flex-direction: column; gap: 1.8rem; }
-	.carte-presentation { padding: 1.6rem; flex-basis: auto; }
-	.presentation-texte { text-align: center; }
-	.compet-grille {
-		position: static;
-		display: grid;
-		grid-template-columns: repeat(2, minmax(8rem, 1fr));
-		gap: 1.8rem 1rem;
-		justify-content: center;
-	}
-	.compet-bulle { position: static; }
-	.compet-ronde { width: 11rem; height: 11rem; }
-	.sports-grille { grid-template-columns: repeat(2, 1fr); gap: 1.2rem 0.8rem; height: auto; padding: 0 1.5vw; }
-	.sponsors-grille { grid-template-columns: repeat(2, 1fr); height: auto; }
-	.sponsor-carre { aspect-ratio: 16 / 9; }
 	.icone-image { width: 8.5rem; height: 8.5rem; }
-	.sport-carre { aspect-ratio: 4 / 3; height: auto; }
 	.pied-grille { grid-template-columns: 1fr 1fr; }
 }
 `
@@ -689,8 +454,8 @@ func entete(n *kernel.Noyau, locale, courant string, connecte bool) template.HTM
 		"actus":       "/actus",
 		"planning":    "/planning",
 		"equipe":      "/equipe",
-		"sport":       "/#sports",
-		"competition": "/#competitions",
+		"sport":       "/actus",
+		"competition": "/actus",
 		"boutique":    "/boutique",
 	}
 	var onglets strings.Builder
