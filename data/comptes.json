@@ -1,0 +1,10 @@
+[
+  {
+    "id": "b29903aa224899e0cc377b498649aced",
+    "data": {
+      "login": "jeannot",
+      "motdepasse": "pbkdf2$210000$5cb0f2ce33eed35d500f8ac09f3a93b0$9bb487b83ebff11ee933fb663f47cd60e5c81f3a00f95ec8cd0c9d400d9efca0",
+      "role": "adherent"
+    }
+  }
+]
