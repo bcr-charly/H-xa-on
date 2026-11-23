@@ -73,8 +73,11 @@ func TestAccueilRendu(t *testing.T) {
 	if code != 200 {
 		t.Fatalf("code : %d", code)
 	}
-	if !strings.Contains(corps, "les chasseurs et les cueilleurs") {
-		t.Error("slogan absent de l'accueil")
+	if !strings.Contains(corps, "fait vivre le sport") {
+		t.Error("titre de l'accueil absent")
+	}
+	if !strings.Contains(corps, "/adhesion") || !strings.Contains(corps, "/sports") {
+		t.Error("boutons Adhésion / Nos sports du hero attendus")
 	}
 	if !strings.Contains(corps, "/connexion") {
 		t.Error("bouton connexion absent")
@@ -88,11 +91,14 @@ func TestAccueilRendu(t *testing.T) {
 	if !strings.Contains(corps, `body class="page-accueil"`) {
 		t.Error("la page d'accueil doit porter la classe page-accueil")
 	}
-	if !strings.Contains(corps, `class="langue-bloc"`) || !strings.Contains(corps, `class="langue-menu"`) {
-		t.Error("onglet de langue attendu sous forme de menu ouvrable")
+	if strings.Contains(corps, `class="langue-bloc"`) {
+		t.Error("site monolingue : pas d'onglet de langue")
 	}
-	if strings.Contains(corps, `class="fond-fixe"`) || strings.Contains(corps, "compet-") || strings.Contains(corps, "sports-grille") {
-		t.Error("la page d'accueil doit rester réduite à son hero (pas de fond photo, pas de sous-pages complications/sports)")
+	if !strings.Contains(corps, `class="stats-grille"`) || !strings.Contains(corps, `id="association"`) {
+		t.Error("sections association et statistiques attendues sur l'accueil")
+	}
+	if strings.Contains(corps, "or-metal") || strings.Contains(corps, "F5D77A") {
+		t.Error("plus de teinte dorée : la DA braise est franche")
 	}
 	if !strings.Contains(corps, "bds_ensiie") || !strings.Contains(corps, "ensiie.fr") {
 		t.Error("liens du pied de page (Instagram, école) absents")

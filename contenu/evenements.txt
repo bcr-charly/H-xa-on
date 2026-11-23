@@ -1,0 +1,17 @@
+# Événements phares du BDS (équivalent de « L'Ekiden du Platal » du BDS
+# Télécom Paris). Un bloc [evenement] par événement, affiché sur l'accueil :
+#   nom          — nom de l'événement
+#   description  — description (multi-lignes en indentant)
+#   site         — lien vers le site de l'événement (bouton, optionnel)
+# Les événements s'affichent dans l'ordre du fichier ; la section et ses
+# cartes se répètent si plusieurs événements existent. Tant qu'aucun bloc
+# n'est renseigné, la section s'auto-masque. Ne pas inventer : renseigner
+# les événements réels du BDS de l'ENSIIE.
+#
+# Exemple :
+#
+# [evenement]
+# nom = Le tournoi de l'ENSIIE
+# description = Le plus grand événement organisé par le BDS, ouvert à tous
+#   les étudiants et personnels de l'école.
+# site = https://www.exemple.fr

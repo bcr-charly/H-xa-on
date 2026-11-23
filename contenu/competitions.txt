@@ -1,0 +1,38 @@
+# Compétitions auxquelles le BDS de l'ENSIIE a participé, affichées sur la
+# sous-page « Compétitions » de l'accueil. Un bloc [compet] par compétition :
+#   nom          — libellé affiché sous la bulle
+#   image        — fichier dans assets/ (trophee.svg par défaut)
+#   description  — texte de la page dédiée /competition/<nom en slug>
+#   slug         — (optionnel) identifiant d'URL si le nom doit différer
+
+[compet]
+nom = Coupe de l'X
+image = coupe-de-lx.png
+description = La Coupe de l'X est le tournoi sportif inter-écoles qui
+  réunit chaque année les grandes écoles d'ingénieurs. Le BDS y engage
+  chaque année ses équipes.
+
+[compet]
+nom = TOSS
+image = toss.png
+description = Le TOSS (Tournoi Ouvert des Student Sports) est un tournoi
+  étudiant de référence où le BDS défend les couleurs de l'ENSIIE.
+
+[compet]
+nom = FFSU
+image = ffsu.jpg
+description = Les compétitions FFSU (Fédération Française du Sport
+  Universitaire) opposent les universités et écoles toute l'année,
+  du départemental aux France universitaires.
+
+[compet]
+nom = ENSIIE-SPORT
+position = centre
+image = sport.svg
+description = ENSIIE-SPORT, la section e-sport du BDS : tournois internes,
+  parties en ligne entre élèves et représentation de l'école sur les
+  compétitions universitaires de jeux vidéo.
+
+# Champ optionnel par bloc : periode — période de l'année (ex. « Mars »),
+# affichée dans la carte de la page Compétitions. Compléter avec les dates
+# réelles du calendrier du BDS.

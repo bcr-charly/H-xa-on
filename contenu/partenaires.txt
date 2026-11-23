@@ -1,0 +1,20 @@
+# Partenaires du BDS, affichés dans la section « Nos partenaires » de
+# l'accueil. Un bloc [partenaire] par carte :
+#   nom          — nom du partenaire
+#   offre        — offre en quelques lignes (multi-lignes en indentant ;
+#                  une ligne indentée de plus commence par "- " = puce)
+#   conditions   — mettre "oui" pour afficher « Offres soumises à conditions »
+#   site         — lien externe du bouton « Visiter le site »
+#   flyer        — lien externe du bouton « Voir le flyer » (PDF, optionnel)
+# Tant qu'aucun bloc n'est renseigné, la section s'auto-masque sur l'accueil.
+# Ne pas inventer : renseigner les partenaires réels du BDS de l'ENSIIE et
+# leurs offres vérifiées.
+#
+# Exemple :
+#
+# [partenaire]
+# nom = Exemple SARL
+# offre = 10% de remise pour les adhérents du BDS sur présentation
+#   de la carte d'adhésion.
+# conditions = oui
+# site = https://www.exemple.fr
